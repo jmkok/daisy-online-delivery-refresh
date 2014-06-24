@@ -1,0 +1,88 @@
+#summary One-sentence summary of this page.
+
+=Notes of Telecon 23 June 2014=
+
+Present: Dave Gunn (chair/scribe), Fredrik Schill, Bert Paepen, Keith Creasy, Nick Williamson, Edmar Schut, George Kerscher, Dominic Labbé, Takuro Shiroki, Hiro Fujimori, Jelle Martijn Kok, Claudio Montalban, Johan Abbors, Per Sennels.
+
+==Actions:==
+*George* – send a message to the mailing list about funding this working group. Suggested $1,000 per organisation.
+
+*All* – where possible please reply off list to George to initiate invoice for funding this working group.
+
+*Dave* – add everyone to the Google Project Group (http://code.google.com/p/daisy-online-delivery-refresh/)
+
+*All* – email Dave to nominate yourself as an expert to contribute to the discovery editing process. 
+
+==Introductions==
+Everyone introduced themselves, their organisation and gave a 1 sentence description of their interest in the group.
+
+==How we got here, and the ideal outcome.==
+George: Following a meeting at CSUN (notes of which have been circulated) – identified that the specification doesn’t need a full revision, but does needs more consistent implementation. We’re currently seeing inconsistency in what people pick and choose to implement. There has been some discussion of features outside the spec, but doesn’t feel like a complete revision needed.
+Had previously called for volunteer to lead the group, but nobody came forward. Vision Australia may have someone to help edit, so the decision was made to hire Dave to lead this working group.
+
+==DAISY Board directive on funding of the working group.==
+George: The Board suggested collection of small fee from the participating organisations to pay for this group. Commitments already received from several organisations. 
+George will send email to the list with details, organisations should email George directly to trigger the invoice process. Suggest $1,000 in this first invoice.
+
+*Action George* – send a message to the mailing list about funding this working group. 
+
+*Action All* – where possible please reply off list to George to initiate invoice for funding this working group.
+
+Organisations which can’t afford or can’t commit won’t be kicked off, but it is recommended that those who are benefiting from the spec help fund the work on it.
+
+==Highlights and key messages from the survey==
+Dave:  Document of collated responses has been circulated. In summary there were 23 responses, which range from “everything fine” to very detailed responses with proposed enhancements. Responses have been grouped into broad themes, not for in-depth discussion right now, but a few highlights from those themes:
+
+  * Consistency of implementation – came through as a strong message and something we should work to address.
+  * Application support for modern reading methods – mention that the original spec was hardware focused, but modern reading happens across multiple devices, hardware/software/apps  and there are ways we can improve the user experience. 
+  * Communication complexity – sometimes there is not enough detail in responses, whereas other communication unnecessarily complex. Reports of users experiencing delays because of “protocol inefficiencies” 
+  * Dynamic menus – questions of usability of dynamic menus and complexity of implementation.
+  * Copyright controls and permissions – download vs streaming permissions, and control after download to locally store files.
+  * Remote configuration of users – currently a manual process for hardware, and a much more user-friendly method of remote configuration and management would be desirable.
+
+===Feature enhancements===
+  * REST support in addition to SOAP – survey responses both for and against.
+  * EPUB3 support
+George: absolutely we should have support for EPUB3, and with EPUB being a single file – it may simplify some delivery issues. READIUM open source software may be of interest for people developing players. Licencing has just changed to be more attractive for non-profits. Readium.org
+George is happy to connect people with contacts at READIUM if required.
+  * Custom messaging – for system maintenance and emergency notification
+
+===Questions / comment from the survey:===
+When is a new feature out of scope? 
+
+We’re not currently able to expand the specification to incorporate all proposed features, but it is ultimately for this working group to decide which should be in or out of scope. 
+
+Requests not to change the protocol too much:
+
+Many members have invested in the protocol already, and we will need to make measured decisions about protocol enhancements with that in mind. We may also want to consider backwards compatibility where possible.
+
+The survey responses will form the foundation of the next phase of work.
+
+==Initial themes of work==
+Dave: From the CSUN meeting and the survey responses two broad themes are clear.
+  # Identification of good practice. Suggestion of a primer for the spec to encourage adoption of good practice.
+  # Feature enhancements. What can we do to enrich the protocol, and which elements should be tackle. 
+
+==Next steps==
+Dave: Proposed discovery phase for the next 4 weeks to identify potential enhancements and features.
+These can be collated and filtered on the Google Project page, building from the survey responses.
+
+*Action Dave*: add everyone to the Google Project page.
+Everyone expected to contribute in some way, but a few people familiar with the protocol are probably best places to lead the editing of responses on the Project pages.
+
+*Action All*: Please respond to Dave off list if you would like to nominate yourself.
+
+==Agenda Next meeting==
+Meetings will be weekly, with a rolling agenda:
+  * Rotating short presentation (10 minute) of learning points from implementing DODP.
+  * Discussion Q&A on presentation
+  * Enhancement feature focus
+  * Good practice feature focus
+Because this is an international call there is no perfect time of day for this call, thanks to those who are currently getting up early or staying up late to participate the call. 
+No objections were recorded to holding the call at the same time and day each week.  
+
+==Any other business==
+No AOB this week.
+
+==Next meeting==
+Monday 30 June 11am UTC
