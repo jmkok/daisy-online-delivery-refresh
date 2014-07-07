@@ -1,5 +1,6 @@
-#summary = *Proposed changes to DAISY Online Delivery Protocol v1.1* =
-
+#summary Proposed changes to DAISY Online Delivery Protocol v1.1
+= *Proposed changes to DAISY Online Delivery Protocol v1.1* =
+----
 == *Introduction* ==
 
 These are the proposed changes to DODP v1.1, please read additional pages "items requiring clarification" and Proposed changes to DAISY Online Delivery Protocol v2 for additional features to be re prioritized
