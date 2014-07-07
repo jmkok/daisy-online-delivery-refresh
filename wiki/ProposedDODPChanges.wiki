@@ -24,10 +24,48 @@ A standard-based, interoperable (manufacturer-independent) way of registering a 
 
 *5.* It is not possible to distinguish between content download and content streaming requests from the client.  Requires a flag to indicate if download is completed.  There is currently no way to know if a content item has been fully downloaded or just streamed. (see point…)
  
-*6.* To answer the points 3,4,5 above: Require a Method to inform the server when a download starts and ends and flag the download type including ability to Return an Error message when denying a download.  Purpose  Method for the client to inform the server when a download event starts and when it ends and ability for the server to deny the request and return an error code with a custom message for players that support TTS. The method should include a flag to inform the server if the download is stream or download enabling the server to differentiate and action the two requests differently. Also whether content should be locked to a device.  Also, the ability to return an error code with a custom message for players with TTS to inform the client why a download request was denied. This method should include a flag which the player can action upon to retry or not upon conditions. Use case To enable prioritization of bandwidth allocation to Streaming clients to maintain a standard of service in the event of download requests overloading the pipe. To enable the server from denying requests for download of titles where copyright does not allow download but allows streaming. To enable the Server to reject a download based on conditions (such as time of the day to enable off peak downloads) and inform the player if this action should be retried.  Technical Investigation  The DAISY Online service requires the ability to inform the Server that a ’download’ or ‘streaming’ operation is beginning or ending.  Add Method FinishAction(ActionSession).  This informs the service that the given action has completed.  This is required to; 
-- Support legal requirements around some content being allowed to be streamed but NOT downloaded. 
+*6.* To answer the points 3,4,5 above: 
+Require a Method to inform the server when a download starts and ends and flag the download type including ability to Return an Error message when denying a download. 
+ 
+*Purpose*
+  
+Method for the client to inform the server when a download event starts and when it ends and ability for the server to deny the request and return an error code with a custom message for players that support TTS. 
+
+The method should include a flag to inform the server if the download is stream or download enabling the server to differentiate and action the two requests differently. 
+Also whether content should be locked to a device.  Also, the ability to return an error code with a custom message for players with TTS to inform the client why a download request was denied. 
+
+This method should include a flag which the player can action upon to retry or not upon conditions. 
+Use case To enable prioritization of bandwidth allocation to Streaming clients to maintain a standard of service in the event of download requests overloading the pipe.
+
+To enable the server from denying requests for download of titles where copyright does not allow download but allows streaming. 
+
+To enable the Server to reject a download based on conditions (such as time of the day to enable off peak downloads) and inform the player if this action should be retried.  
+
+*Technical Investigation*  
+
+The DAISY Online service requires the ability to inform the Server that a ’download’ or ‘streaming’ operation is beginning or ending.  Add Method FinishAction(ActionSession).  This informs the service that the given action has completed.  
+
+This is required to:
+ 
+- Support legal requirements around some content being allowed to be streamed but NOT downloaded.
+ 
 - Determine if a Download is allowed based on Peak/Off-peak periods.   E.g. Ability to fail a download request, but allow a streaming request. 
-- Allow collection of statistics for user operations - I.e. accurately count downloads, streaming sessions etc. This method needs to be able to send a 'NO' response that also provides not only a label explaining why but also a count in minutes before retrying. Examples of reasons to return ‘No’ include: “This item cannot be downloaded, it can only ever be streamed” “This item cannot be downloaded now as it can only be done in Off-Peak period”.  GetContentMetadata can avoid the need for a flag to determine Download or Stream by making the assumption that the size returned would be for the Download of content.   I.e. in the scenario where the content to be downloaded and that to be streamed resides on different server locations (and may be a different size), it can return the correct Filesize.  GetResources will need to know the download/Streaming intention so it can return the correct URL's as they may be different and therefore will be at different locations.   This also enables access to the content to be denied and also to allow access to a single Zip/Container file rather than the individual files required for streaming. The individual resource script will also need to know if they are being used for download or stream enabling the resource script to, for example, fail if the time falls outside of a Off-peak period.  Recommendation:	GetContentMetadata Add new meta-data to the response such as PermittedActionType (Download, Stream, Both).   This enables the device to know if an item can be downloaded or not at the time of building the bookshelf.   It can then only make the option to Download available for items that can be downloaded.  (the download or streaming action would ONLY be called just prior to the action beginning and not, for instance while building the bookshelf)
+
+- Allow collection of statistics for user operations - I.e. accurately count downloads, streaming sessions etc. This method needs to be able to send a 'NO' response that also provides not only a label explaining why but also a count in minutes before retrying. 
+Examples of reasons to return ‘No’ include: “This item cannot be downloaded, it can only ever be streamed” “This item cannot be downloaded now as it can only be done in Off-Peak period”.  
+
+GetContentMetadata can avoid the need for a flag to determine Download or Stream by making the assumption that the size returned would be for the Download of content.   
+I.e. in the scenario where the content to be downloaded and that to be streamed resides on different server locations (and may be a different size), it can return the correct Filesize.  
+
+GetResources will need to know the download/Streaming intention so it can return the correct URL's as they may be different and therefore will be at different locations.   
+
+This also enables access to the content to be denied and also to allow access to a single Zip/Container file rather than the individual files required for streaming. 
+
+The individual resource script will also need to know if they are being used for download or stream enabling the resource script to, for example, fail if the time falls outside of a Off-peak period.  Recommendation:	GetContentMetadata Add new meta-data to the response such as PermittedActionType (Download, Stream, Both).   
+
+This enables the device to know if an item can be downloaded or not at the time of building the bookshelf.   
+
+It can then only make the option to Download available for items that can be downloaded.  (the download or streaming action would ONLY be called just prior to the action beginning and not, for instance while building the bookshelf)
 
 *7.* Downloads should simply be disallowed by a "serviceAttributes" parameter (is this the correct parameter? You would need both this and GetContentMeta/list, which one would be the reference) 
 
