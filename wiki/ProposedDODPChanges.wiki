@@ -1,15 +1,15 @@
-*Proposed changes to DAISY Online Delivery Protocol v1.1*
+= *Proposed changes to DAISY Online Delivery Protocol v1.1* =
 
-= *Introduction* =
+== *Introduction* ==
 
 These are the proposed changes to DODP v1.1, please read additional pages "items requiring clarification" and Proposed changes to DAISY Online Delivery Protocol v2 for additional features to be re prioritized
 
 
-= *Consistency in implementation* =
+== *Consistency in implementation* ==
 
 *1.* Protocol is implemented in different ways by different clients and servers, because it is possible to interpret it in different ways as has been done by different organisations.  As a result client developers can’t create generic clients that work across all services.  Unification of implementation between organizations is required.
 
-= *User setup* =
+== *User setup* ==
 
 *2.* The service provider has no standard means to implement reading system setup without manual steps. This is a significant factor slowing down delivery and adoption of the online service. Currently the hardware players requires manual configuration by technical staff.
 
@@ -30,7 +30,8 @@ A standard-based, interoperable (manufacturer-independent) way of registering a 
 
 *7.* Downloads should simply be disallowed by a "serviceAttributes" parameter (is this the correct parameter? You would need both this and GetContentMeta/list, which one would be the reference) 
 
-Streamlining communication with the server
+== *Streamlining communication with the server* ==
+
 8.	Reading System - many steps before connected (high latency connections suffer) (agreed.  Can the call from the players be simplified – combine requests into one call… perhaps a ‘richer’ GetContentlist)
 9.	Minimize number of requests and communication steps. Example: Reduce the steps (requests) required to obtain contentMetadata. 
 10.	Modify operation logOn - The logOn operation should include the functionality in the getServiceAttributes and setReadingSystemAttributes operations. For example in the case of talking newspapers, consisting only of text based Daisy 3 products, the DODP itself becomes a noticeable share of the data. This, along with delays in the mobile network, makes the DODP requests ”expensive”. As a solution, we propose that certain requests, those that need to be performed sequentially anyway, are joined into a common request, a combination of logOn, getServiceAttributes and setReadingSystemAttributes. The readingSystemAttributes can be included in the request and the serviceAttributes can be returned in the response of the logOn operation.
