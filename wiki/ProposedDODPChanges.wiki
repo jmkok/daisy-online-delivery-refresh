@@ -1,4 +1,4 @@
-= *Proposed changes to DAISY Online Delivery Protocol v1.1* =
+#summary = *Proposed changes to DAISY Online Delivery Protocol v1.1* =
 
 == *Introduction* ==
 
