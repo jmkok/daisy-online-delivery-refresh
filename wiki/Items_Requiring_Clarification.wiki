@@ -93,11 +93,9 @@ _(What is being asked for here? Is this a recommendation that ‘Size’ refers 
 *21.* The getContentMetadata has a meta-tag to provide custom/undeclared items to the getContentMetadata. I suggest to add something similar to the getServiceAttributes and setReadingSystemAttributes, so server and reading devices can exchange custom data.  
 _(This gets us away from there being a interoperable standard – Risk of a ‘looser’ standard)_
 
-*22.* Support for EPUB, specifically the ability to stream EPUB. _(Required, but this is a significant re-write of the spec in itself – V2 of the spec)_
+*22.* Problem with multiple namespaces for DODP and Bookmarks (part of SMIL standard). _(what?)_
 
-*23.* Problem with multiple namespaces for DODP and Bookmarks (part of SMIL standard). _(what?)_
-
-*24.* Other thoughts on bookmarks - Today, fetching regular bookmarks or hilites, one at a time, cannot be done unless the client is already familiar with the individual bookmark/hilite.
+*23.* Other thoughts on bookmarks - Today, fetching regular bookmarks or hilites, one at a time, cannot be done unless the client is already familiar with the individual bookmark/hilite.
 
 This because ”ID” and position are identical. What is needed, then, is some form of position-independent ID. This, however, is not something that we advocate since it would turn DODP into a mess while the usefulness is uncertain in most cases.
 
@@ -108,8 +106,8 @@ One should, however, consider the increase in complexity that is implied by such
 Option of a device prompting the user to name a bookmark, but wouldn’t you use ‘hilite’ for this? Complexity for everyone that simply want a ‘mark’ to come back to in the content)Time stamp 
 _(This whole section requires further analysis – is it possible to achieve? E.g. device must have the time synced)_
 
-*25.* Add timestamp to a bookmarkSet _(Is this to eliminate conflicts in bookmarks set when offline/online?)_
+*24.* Add timestamp to a bookmarkSet _(Is this to eliminate conflicts in bookmarks set when offline/online?)_
 
-*26.* Add timestamp to individual bookmarks. That way, when reading on multiple devices online and offline, lastmarks and bookmarks can be synchronised more correctly. _(Example?)_
+*25.* Add timestamp to individual bookmarks. That way, when reading on multiple devices online and offline, lastmarks and bookmarks can be synchronised more correctly. _(Example?)_
 
-*27.* Add timestamp information to servers for synchronization of resources (Example why? At best this could be optional – not all devices have synchronised clocks)
+*26.* Add timestamp information to servers for synchronization of resources (Example why? At best this could be optional – not all devices have synchronised clocks)
