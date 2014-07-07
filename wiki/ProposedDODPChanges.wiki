@@ -172,17 +172,75 @@ It would be useful if Service Attributes could define the preferred polling time
 
 Standardising the meaning of Priority 1 (and 2 & 3) Announcement’s that specifies that these messages should interrupt the current user activity with the Announcement. 
 
-Add Announcement polling time parameter to the GetServiceAttributes response. The DAISY Online standard describes the use of the exception codes.   “Each of these fault types has a reason child element, a string which can be used to send debugging information to the Reading System.   The Information should not be rendered to the User in most cases”.    (Confirm that the proposed usage does not conflict with the intention of the above statement, ‘The Information should not be rendered to the User in most cases’ and update usage guideline as necessary). 
+Add Announcement polling time parameter to the GetServiceAttributes response. The DAISY Online standard describes the use of the exception codes. “Each of these fault types has a reason child element, a string which can be used to send debugging information to the Reading System.
 
-*21.* Terms of Service Status  Purpose  To enable the protocol to manage terms of service with provisions for presenting a client with terms and conditions that must be agreed on and return this information to the server. The server would present ToS only if the client has not agreed to them in another device or webpage related to the service. Use case When authenticating with the server if a user has not agreed to terms of service DOP will send these and return if the client has agreed to or not to the Server before allowing the device to proceed with the service.  Recommendation  Add the following additional methods to the protocol standard; 
+The Information should not be rendered to the User in most cases”.    (Confirm that the proposed usage does not conflict with the intention of the above statement, ‘The Information should not be rendered to the User in most cases’ and update usage guideline as necessary). 
+
+*19.* Terms of Service Status
+
+*Purpose*
+
+To enable the protocol to manage terms of service with provisions for presenting a client with terms and conditions that must be agreed on and return this information to the server.
+
+The server would present ToS only if the client has not agreed to them in another device or webpage related to the service.
+
+Use case When authenticating with the server if a user has not agreed to terms of service DOP will send these and return if the client has agreed to or not to the Server before allowing the device to proceed with the service.
+
+*Recommendation*
+
+Add the following additional methods to the protocol standard:
+ 
 1. GetTermsOfService -  Returns Terms of Service Text and question. 
+
 2. MarkTermsOfServiceAsRead -  Updates the ‘Agreed to Terms of Service’ flag to True. 
-Change GetContentList method to fail when Terms of Service have not been agreed returning a new fault code. Add a new attribute to the GetServiceAttribute response called TERMS_OF_SERVICE.   This would determine if the Terms of Service methods are supported.   I.e. if the user has not agreed then they will not be able to access content.   The device can use the API to manage the agreement or recommend the user arranges for this outside of the device.  
 
-*22.* Shifting ReturnBy Date  Purpose  Currently a ReturnBy date is made available for each individual resource file returned by the method GetResources.   I believe the ReturnBy date is associated with the ContentItem and not the individual resource files.   I.e. I cannot currently see a case where some resource files would have a different ReturnBy date to other resource files within the same ContentItem. This causes some devices to call GetResources at the time of building the Bookshelf which could be argued is unnecessary.   E.g. IF a User ha 10 items on their bookshelf but was only interested in streaming 1 of them in a given session, then GetResources would have been called 9 times unnecessarily. If this is True, then it would be better If the ReturnBy Date in GetResources is shifted to GetContentMetadata then GetResources does not need to be called to build the booklist and is only required when an action (Download or Stream) is about to begin.  Recommendation  Shift the ReturnBy date from GetResources to GetContentMetadata."
+Change GetContentList method to fail when Terms of Service have not been agreed returning a new fault code. Add a new attribute to the GetServiceAttribute response called TERMS_OF_SERVICE.
 
-*23.* lastItem recommendation/clarification - In DODP there should be included a recommendation that the client implements a max value for the request parameter lastItem which takes into account the capacity of the client regarding the number of elements that can be presented in a list at a time. In the case of MTM, there is the risk that a search will result in tens of thousands of titles. Now, if the client immediately fetches the entire search result, it will cause unnecessary load on the DOD server. Bandwidth is almost certainly wasted as it is unlikely that the borrower is interested in more than the first ten or so results. There is also the added inconvenience that the application may be perceived as slow/non-responsive. Also, n the description of the response object, it is stated that an empty list should be returned when firstItem and lastItem are invalid. However, there are no examples with concrete values that illustrate when firstItem and lastItem may be considered invalid. (usage guideline)
+This would determine if the Terms of Service methods are supported.   I.e. if the user has not agreed then they will not be able to access content.
 
-*24.* New and issued content - A clarification is needed regarding how new and issued content lists are intended to be used in the bookshelf. Today, there are different interpretations depending on use cases and number of titles. For example, there are clients that only look at new, download these to the player and then consider issued to be the same thing as completed downloads. In these cases, there is no point in asking for issued, but this only works if the same, single, client is used all the time. We assume, however, that the users will at least once switch to a different client. A related question is the interpretation of new and issued. Is a new book one that is new in the total collection or in the bookshelf? For a library with a long range of titles and considerable new production, ”new book in the collection” becomes extremely ambiguous.
+The device can use the API to manage the agreement or recommend the user arranges for this outside of the device.
 
-*25.* To support peak/off-peak usage; add 2 New fault codes for GetResources to be used by devices without synthetic voice to determine if the failure is caused by the server not allowing the action.   The fault codes need to communicate if the download rejection should be retried later or should not.   i.e. A Book which is ‘Stream Only’ should not be retried, however, a book download attempt in Peak period should retry later. eg. AccessRejected, AccessRejectedRetry.  The individual URI’s returned from GetResources cannot return a detailed message as it is not a SOAP call and therefore does not return the standard SOAP faults.  Therefore, specific fault codes are suggested as above.
+*20.* Shifting ReturnBy Date
+
+*Purpose*
+
+Currently a ReturnBy date is made available for each individual resource file returned by the method GetResources.
+
+I believe the ReturnBy date is associated with the ContentItem and not the individual resource files. I.e. I cannot currently see a case where some resource files would have a different ReturnBy date to other resource files within the same ContentItem.
+
+This causes some devices to call GetResources at the time of building the Bookshelf which could be argued is unnecessary. E.g. IF a User ha 10 items on their bookshelf but was only interested in streaming 1 of them in a given session, then GetResources would have been called 9 times unnecessarily.
+
+If this is True, then it would be better If the ReturnBy Date in GetResources is shifted to GetContentMetadata then GetResources does not need to be called to build the booklist and is only required when an action (Download or Stream) is about to begin.
+
+*Recommendation*
+
+Shift the ReturnBy date from GetResources to GetContentMetadata."
+
+*21.* lastItem recommendation/clarification 
+
+In DODP there should be included a recommendation that the client implements a max value for the request parameter lastItem which takes into account the capacity of the client regarding the number of elements that can be presented in a list at a time. In the case of MTM, there is the risk that a search will result in tens of thousands of titles. 
+
+Now, if the client immediately fetches the entire search result, it will cause unnecessary load on the DOD server. Bandwidth is almost certainly wasted as it is unlikely that the borrower is interested in more than the first ten or so results. 
+
+There is also the added inconvenience that the application may be perceived as slow/non-responsive. Also, in the description of the response object, it is stated that an empty list should be returned when firstItem and lastItem are invalid. 
+However, there are no examples with concrete values that illustrate when firstItem and lastItem may be considered invalid. (usage guideline)
+
+*22.* New and issued content
+
+A clarification is needed regarding how new and issued content lists are intended to be used in the bookshelf. 
+Today, there are different interpretations depending on use cases and number of titles. 
+For example, there are clients that only look at new, download these to the player and then consider issued to be the same thing as completed downloads. 
+
+In these cases, there is no point in asking for issued, but this only works if the same, single, client is used all the time. We assume, however, that the users will at least once switch to a different client. 
+
+A related question is the interpretation of new and issued.
+Is a new book one that is new in the total collection or in the bookshelf? For a library with a long range of titles and considerable new production, ”new book in the collection” becomes extremely ambiguous.
+
+*23.* To support peak/off-peak usage: 
+
+Add 2 New fault codes for GetResources to be used by devices without synthetic voice to determine if the failure is caused by the server not allowing the action.
+
+The fault codes need to communicate if the download rejection should be retried later or should not. i.e. A Book which is ‘Stream Only’ should not be retried, however, a book download attempt in Peak period should retry later. eg. AccessRejected, AccessRejectedRetry.
+
+The individual URI’s returned from GetResources cannot return a detailed message as it is not a SOAP call and therefore does not return the standard SOAP faults.
+Therefore, specific fault codes are suggested as above.
