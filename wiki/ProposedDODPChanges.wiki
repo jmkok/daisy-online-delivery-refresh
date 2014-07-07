@@ -110,9 +110,13 @@ For example: cover image, author, publisher, DTBtype, containsBookmarks, contain
 
 *16.* Sending all the bookmark data every time the client causes unnecessary load on the server. This especially happens when a client wishes to update individual bookmarks or lastmark and the book has a great number of bookmarks and ‘hilites’.
 
-*Possible Solution 1: There should be a recommendation that the client calls setBookmarks only at the end of a reading session. To keep server load and bandwidth at a minimum the client should be “intelligent”, making as few requests as possible while keeping the bookmark data on the server reasonably up to date. (Is this really a large load on the server? Is this an issue of the device sending too many updates to the server?)
+ *Possible Solution 1: There should be a recommendation that the client calls setBookmarks only at the end of a reading session. To keep server load and bandwidth at a minimum the client should be “intelligent”, making as few requests as possible while keeping the bookmark data on the server reasonably up to date. (Is this really a large load on the server? Is this an issue of the device sending too many updates to the server?)
 
- *Possible Solution 2: setBookmarks new operations - There should be separate operations for setting and removing lastmark, bookmark and ‘hilite’.   Also getBookmarks new operation - There should be a separate operation for getting lastmark so that the client can fetch bookmarks and markings in a separate request. In a typical scenario, the user opens a book and expects to arrive where the reading/listening was interrupted/paused the last time and the user expects this to happen as quickly as possible. If any other bookmark data is needed, this can be loaded in the background or immediately afterwards. (note two recommendations in this solution)
+ *Possible Solution 2: setBookmarks new operations - There should be separate operations for setting and removing lastmark, bookmark and ‘hilite’.   
+
+Also getBookmarks new operation - There should be a separate operation for getting lastmark so that the client can fetch bookmarks and markings in a separate request. 
+In a typical scenario, the user opens a book and expects to arrive where the reading/listening was interrupted/paused the last time and the user expects this to happen as quickly as possible. 
+If any other bookmark data is needed, this can be loaded in the background or immediately afterwards. (note two recommendations in this solution)
 
  *Possible Solution 3: Add method ”addBookmark”. The backend will generate a bookmarkID and return this ID back to the player. From then on this id can be used to alter a bookmark.  Also Add method “removebookmark”.
 
