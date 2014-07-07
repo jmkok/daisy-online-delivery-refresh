@@ -1,0 +1,12 @@
+#summary One-sentence summary of this page.
+
+== Introduction ==
+
+These are changes to the protocol to be incorporated on a future version of the protocol which will incorporate more radical changes.
+
+== *REST related topics* ==
+
+*28.* Some conflicts in WSDL/types, and schemas. REST interface would be much better.
+
+*29.* Use REST binding in addition to SOAP to make messages smaller.  
+Assumption: There is a request to implement REST instead of SOAP.  To implement REST would require a re-write of the specification.  It would also require redesign of existing server implementations and support by clients.  This would need to be done in parallel to existing services to ensure continuity and backwards compatibility with existing services.
