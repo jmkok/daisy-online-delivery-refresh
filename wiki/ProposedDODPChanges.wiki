@@ -27,9 +27,9 @@ A standard-based, interoperable (manufacturer-independent) way of registering a 
 *6.* To answer the points 3,4,5 above: 
 
 Require a Method to inform the server when a download starts and ends and flag the download type including ability to Return an Error message when denying a download. 
- 
+
 *Purpose*
-  
+
 Method for the client to inform the server when a download event starts and when it ends and ability for the server to deny the request and return an error code with a custom message for players that support TTS. 
 
 The method should include a flag to inform the server if the download is stream or download enabling the server to differentiate and action the two requests differently. 
