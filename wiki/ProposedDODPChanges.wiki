@@ -53,9 +53,11 @@ This is required to:
 - Determine if a Download is allowed based on Peak/Off-peak periods.   E.g. Ability to fail a download request, but allow a streaming request. 
 
 - Allow collection of statistics for user operations - I.e. accurately count downloads, streaming sessions etc. This method needs to be able to send a 'NO' response that also provides not only a label explaining why but also a count in minutes before retrying. 
+
 Examples of reasons to return ‘No’ include: “This item cannot be downloaded, it can only ever be streamed” “This item cannot be downloaded now as it can only be done in Off-Peak period”.  
 
 GetContentMetadata can avoid the need for a flag to determine Download or Stream by making the assumption that the size returned would be for the Download of content.   
+
 I.e. in the scenario where the content to be downloaded and that to be streamed resides on different server locations (and may be a different size), it can return the correct Filesize.  
 
 GetResources will need to know the download/Streaming intention so it can return the correct URL's as they may be different and therefore will be at different locations.   
@@ -76,9 +78,21 @@ It can then only make the option to Download available for items that can be dow
 
 *9.* Minimize number of requests and communication steps. Example: Reduce the steps (requests) required to obtain contentMetadata. 
 
-*10.* Modify operation logOn - The logOn operation should include the functionality in the getServiceAttributes and setReadingSystemAttributes operations. For example in the case of talking newspapers, consisting only of text based Daisy 3 products, the DODP itself becomes a noticeable share of the data. This, along with delays in the mobile network, makes the DODP requests ”expensive”. As a solution, we propose that certain requests, those that need to be performed sequentially anyway, are joined into a common request, a combination of logOn, getServiceAttributes and setReadingSystemAttributes. The readingSystemAttributes can be included in the request and the serviceAttributes can be returned in the response of the logOn operation.
+*10.* Modify operation logOn
 
-*11.* As contentLists only contain titles, with apps typically you want to show more, such as cover images, author, format, return date etc. As a consequence, our app needs to call getContentMetadata for each item.  Add a few metadata fields to contentlists so that they can be loaded on the screen more efficiently. For example: cover image, author, publisher,DTBtype,containsBookmarks,containsLastmark. (enriching GetContentList – VA may have a point that covers this – Check… What should be included?)   
+The logOn operation should include the functionality in the getServiceAttributes and setReadingSystemAttributes operations. 
+
+For example in the case of talking newspapers, consisting only of text based Daisy 3 products, the DODP itself becomes a noticeable share of the data. This, along with delays in the mobile network, makes the DODP requests ”expensive”. 
+
+As a solution, we propose that certain requests, those that need to be performed sequentially anyway, are joined into a common request, a combination of logOn, getServiceAttributes and setReadingSystemAttributes.
+
+The readingSystemAttributes can be included in the request and the serviceAttributes can be returned in the response of the logOn operation.
+
+*11.* As contentLists only contain titles, with apps typically you want to show more, such as cover images, author, format, return date etc. 
+
+As a consequence, our app needs to call getContentMetadata for each item. 
+Add a few metadata fields to contentlists so that they can be loaded on the screen more efficiently. 
+For example: cover image, author, publisher, DTBtype, containsBookmarks, containsLastmark. _(enriching GetContentList – VA may have a point that covers this – Check… What should be included?)_   
 
 == *Dynamic Menu items* ==
 
