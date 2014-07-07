@@ -120,7 +120,7 @@ There are 3 options to deal with this:
 
  *Possible Solution 1: There should be a recommendation that the client calls setBookmarks only at the end of a reading session. To keep server load and bandwidth at a minimum the client should be “intelligent”, making as few requests as possible while keeping the bookmark data on the server reasonably up to date. (Is this really a large load on the server? Is this an issue of the device sending too many updates to the server?)
 
- *Possible Solution 2: setBookmarks new operations - There should be separate operations for setting and removing lastmark, bookmark and ‘hilite’.   
+ * Possible Solution 2: setBookmarks new operations - There should be separate operations for setting and removing lastmark, bookmark and ‘hilite’.   
 
 Also getBookmarks new operation - There should be a separate operation for getting lastmark so that the client can fetch bookmarks and markings in a separate request. 
 In a typical scenario, the user opens a book and expects to arrive where the reading/listening was interrupted/paused the last time and the user expects this to happen as quickly as possible. 
