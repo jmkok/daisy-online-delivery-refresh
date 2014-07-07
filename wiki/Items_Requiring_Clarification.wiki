@@ -111,3 +111,5 @@ _(This whole section requires further analysis – is it possible to achieve? E.
 *25.* Add timestamp to individual bookmarks. That way, when reading on multiple devices online and offline, lastmarks and bookmarks can be synchronised more correctly. _(Example?)_
 
 *26.* Add timestamp information to servers for synchronization of resources (Example why? At best this could be optional – not all devices have synchronised clocks)
+----
+END
