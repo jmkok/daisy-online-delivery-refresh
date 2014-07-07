@@ -1,4 +1,5 @@
-#summary One-sentence summary of this page.
+#summary Future Changes to DAISY Online Delivery Protocol v2
+= *Future Changes to DAISY Online Delivery Protocol v2* =
 
 == Introduction ==
 
