@@ -23,8 +23,9 @@ A standard-based, interoperable (manufacturer-independent) way of registering a 
 *4.* The protocol gives no means to effectively limit usage of borrowable content to a lending period (what about GetContentListExpired).  
 
 *5.* It is not possible to distinguish between content download and content streaming requests from the client.  Requires a flag to indicate if download is completed.  There is currently no way to know if a content item has been fully downloaded or just streamed. (see point…)
- 
+
 *6.* To answer the points 3,4,5 above: 
+
 Require a Method to inform the server when a download starts and ends and flag the download type including ability to Return an Error message when denying a download. 
  
 *Purpose*
