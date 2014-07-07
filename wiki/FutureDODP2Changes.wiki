@@ -3,7 +3,7 @@
 
 == Introduction ==
 
-These are changes to the protocol to be incorporated on a future version of the protocol which will incorporate more radical changes.
+These are changes to the protocol to be incorporated on a future version of the protocol which will involve more significant changes requiring more time and resources.
 
 == *REST related topics* ==
 
