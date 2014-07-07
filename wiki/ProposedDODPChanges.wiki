@@ -1,3 +1,4 @@
+#labels ProposedchangestoDAISYOnlineDeliveryProtocolv1.1
 = *Proposed changes to DAISY Online Delivery Protocol v1.1* =
 
 == *Introduction* ==
