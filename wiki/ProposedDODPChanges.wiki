@@ -244,3 +244,5 @@ The fault codes need to communicate if the download rejection should be retried 
 
 The individual URI’s returned from GetResources cannot return a detailed message as it is not a SOAP call and therefore does not return the standard SOAP faults.
 Therefore, specific fault codes are suggested as above.
+----
+END
