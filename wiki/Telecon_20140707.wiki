@@ -88,7 +88,7 @@ It was noted that Skype doesn’t offer good support for large groups, call reco
 
 Currently we will continue to use the existing system, record calls and take minute hopefully people unable to join the calls will still be able to participate in the group.
 
-Bert - Pixyma use WebEx, which may be an option.
+Bert - Pixyma use WebEx which may be an option.
 
 Keith – EPUB groups use Go to Meeting, but some accessibility issues with the app.
 
@@ -100,4 +100,3 @@ Dave – ok, we will stick with the existing system for the next meeting and rev
 Monday 14 July 11am UTC
 
 Rotating Short Presentation of learning points from implementing DODP – from Fredrik Schill
-
