@@ -1,0 +1,103 @@
+#summary Notes of DODP refresh call 7 July 2014
+
+= Notes of Telecon 30 June 2014 =
+
+Present: Dave Gunn (chair/scribe), Keith Creasy, Mark Klarer, Andrew Furlong, Claudio Montalban, Fredrik Schill, Edmar Schut, Takuro Shiroki, Per Sennels, Bert Paepen.
+
+Regrets: Johan Abbors, Nick Williamson, Dominic Labbé, Hiro Fujimori.
+
+== Actions from previous meeting: ==
+*Rolling - All* – email Dave to nominate yourself as an expert to contribute to the discovery editing process. Nomination received by Fredrik Schill, Johan Abbors, Claudio Montalban.
+
+Complete Action Andrew / Claudio - break the document up and upload to the Google Project space.
+
+New actions
+
+*All* - please review the new Wiki documents to ensure your suggestions have been captured accurately, and are in the correct location. 
+
+*All* – help progress the documents by adding Comments with proposed edits. 
+
+== Rotating short presentation (10 minute) of learning points from implementing DODP. ==
+Keith Creasy and Mark Klarer from APH. Abbreviated notes: 
+
+APH share a lot of the same experiences as Vision Australia, so not repeating those.
+
+APH started 2 years ago attempting to use WSDL Schemas to create an implementation. Found implementation with as many pieces as DODP had complications, issues with schemas namespaces etc. Required edits to schemas to resolve conflicts. Because few people had implemented the server there was little information available. Automated tools ended up being more problematic than helpful. With hindsight would now hand code.
+
+The service now aggregates content from several sources, through DOD service. Wanted a service which enabled the addition of new content and new sources without needing to update the players.
+
+Currently running 3 servers: Magazines and Newspapers; Bookshare; Open Library. Estimate several hundred users across the services, with Bookshare being the most popular. Supporting client access through hardware, software and portable devices. 
+
+Built in Java on Apache Tomcat Linux server, using SQL database to store the issue titles. Built a few years ago using Java Apache Access Tools, although not a recommended path due to suspected bugs which presented challenges within DAISY WSDL definition files, and required lots of manual editing of classes.
+
+Things that would help include: Sample implementation, documentation about what approaches work (and those which don’t).
+
+Challenges with Periodicals and large lists. Bookshare has hundreds of periodicals, different newspapers from different cities.
+Some hardware clients expect a server response within a minute, 
+Needed to break down the content list (e.g. present 50 at a time instead of all 200) because it would otherwise time out.
+Would be good if parts of a menu could be selected from a dynamic menu, then pick a sub-item. But this is not currently possible.
+
+Fredrik – also seen the same challenge with newspapers, especially when users are subscribed to two or more titles, have implemented dynamic menus but it has become a bit clumsy.
+
+Bert – also have magazine and newspaper long list issues. Can be resolved with Dynamic menus and Finland uses different URL for different newspapers which may not be the most elegant approach.
+
+Claudio – this topic has been captured in the potential upgrades document.
+
+Takuro – also feel that the Bookshare material presents a big content list, but from a user point of view it is more convenient if the material is grouped.  A user perspective is likely to be based around categories and content lists.
+
+Fredrik – agree categorising material is a good idea, and could support one category per newspaper.
+
+Bert – agree, may be interesting to also look at filters within categories, which would help address the issue of no standard way to search within the protocol. Issued list and new is ambiguous, people interpret it in different ways, should ideally be crystal clear to remove confusion. 
+
+Keith – agree categories would help, but may not resolve newspaper challenge with hundreds of periodicals to navigate.
+
+Fredrik – would suggest one category per title.
+
+Andrew – is APH automation discussed related to aggregation of content?
+
+Keith – yes, we aggregate from various sources in a way which is consistent to the players.
+
+Dave – checking if this topic has been captured on the Wiki?
+
+Claudio – probably in items requiring clarification.
+
+Keith – would be helpful if types and server messages could offer use case for when a person might use that message or type. Some are obvious, others would benefit from guidance – especially for people outside the group.
+
+== Next Steps==
+Dave - 2 weeks remaining of discovery process
+Activity can now be stepped up. These weekly discussions are helpful to ensure we’re all moving in the same direction, and probe topics in more detail, but we now need to ensure the topics are captured accurately on the Wiki.
+
+Links to the three documents:
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/ProposedDODPChanges
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/Items_Requiring_Clarification
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/FutureDODP2Changes
+
+Claudio - Many points need clarification and to be fleshed out. For example todays discussion is only partially captured in points 11-12 on Requiring Clarification. The Requiring Clarification needs attention to move items with more detail to the V1.1 Proposed list or the V2 list. 
+
+Agreed: Proposal that everyone uses the comments field on the Wiki documents, which will then be implemented by the Editors.
+
+*Action All* – visit the Wiki and use comments to flesh out the items and propose relocation between documents where necessary. 
+
+== AOB ==
+Discussion about moving to Skype or other system to allow online participation.
+
+It was noted that Skype doesn’t offer good support for large groups, call recording, and has historically had quality issues. 
+
+Currently we will continue to use the existing system, record calls and take minute hopefully people unable to join the calls will still be able to participate in the group.
+
+Bert - Pixyma use WebEx, which may be an option.
+
+Keith – EPUB groups use Go to Meeting, but some accessibility issues with the app.
+
+Bert – will look into using their WebEx subscription for the call. _After the meeting Bert confirmed on email that their subscription was for 8 users, so not currently able to support the group._
+
+Dave – ok, we will stick with the existing system for the next meeting and review if a more suitable solution is available in AOB.
+
+== Next meeting ==
+Monday 14 July 11am UTC
+
+Rotating Short Presentation of learning points from implementing DODP – from Fredrik Schill
+
