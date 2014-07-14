@@ -1,6 +1,6 @@
 #summary Notes of DODP refresh call 7 July 2014
 
-= Notes of Telecon 30 June 2014 =
+= Notes of Telecon 7 July 2014 =
 
 Present: Dave Gunn (chair/scribe), Keith Creasy, Mark Klarer, Andrew Furlong, Claudio Montalban, Fredrik Schill, Edmar Schut, Takuro Shiroki, Per Sennels, Bert Paepen.
 
