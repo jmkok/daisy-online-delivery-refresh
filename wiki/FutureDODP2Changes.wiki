@@ -15,5 +15,7 @@ Assumption: There is a request to implement REST instead of SOAP.  To implement 
 == *EPUB3 related topics* ==
 
 *3.* Support for EPUB, specifically the ability to stream EPUB.
+
+*4.* Ensure support for foreign language streaming for EPUB3 (EG: Arabic, Japanese).
 ----
 END
