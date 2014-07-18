@@ -1,0 +1,128 @@
+#summary DODP refresh call 14 July 2014
+= Notes of the Telecon 14 July 2014 =
+
+Attendees: Dave Gunn (chair/scribe), Keith Creasy, Mark Klarer, Andrew Furlong, Claudio Montalban, Fredrik Schill, Edmar Schut, Hiro Fujimori, Takuro Shiroki, Per Sennels, Bert Paepen, Geoff Gilmour-Taylor.
+
+Regrets: Johan Abbors, Dominic Labbé.
+
+== Actions ==
+*Action All*: visit the Wiki and comment on existing proposals, or add new proposals. The email list may be used for lengthy comments which don’t naturally fit the Wiki.
+
+
+== Rotating short presentation (10 minute) of learning points from implementing DODP ==
+Fredrik Schill – Textalk / MTM (abbreviated notes)
+
+MTM is currently running 2 services, a Book service which was developed internally at MTM, and a Newspaper and Magazine service which was developed by Textalk for MTM.
+
+Textalk work very closely with MTM, and Fredrik has been asked by MTM to represent them on this working group, and both organisations recognise the importance of this group.
+
+Both organisations believe the work of this group should result in version 1.1 and not 2, addressing the needs of the group. There is concern that if this protocol is focused on backwards compatibility with no changes, it will quickly become outdated and replaced by other standards – therefore standing still is not an option.
+
+The MTM Book system consist of approximately 100,000 DAISY 2 audio books and student literature.
+
+The Newspaper service is written in PHP on Apache with a MySQL database. Newspapers are formatted in DAISY 3 text only, so each title is approximately 1MB. The service offers approximately 100 Swedish daily newspapers, major publications from cities, as well as small countryside papers which might only be published once a week. Delivered to 6,000 active subscribers, with an average age of 75.
+
+Content is delivered to 3 major reading clients: Stratus players from Humanware, Legimus App on Android and iOS developed by Pixima, and Textalk Reader Android App developed by Textalk.
+
+In addition the system provides daily email distribution of download links, and web based navigation and download.
+
+The Newspaper service offers personalisation options, allowing each subscriber to customise the order of the content (e.g. economics, then sport and entertainment) which takes place server-side. 
+
+Both services use mobile networks for transmission of content, but network coverage is variable and sometimes limited to 2G. DAISY 3 text only titles have been found to offer much better performance for distribution and navigation. For books it can be harder as a human narrator might be expected. 
+
+Also had problems implementing the DSDL, it’s rather complex, tried several libraries and couldn’t find a SOAP library that could really handle DSDL. It may not be something we can solve right now, but we should consider not making the DSDL more complex.
+
+We have also noticed the large overhead with getContentList, especially the book service, but also newspapers, the lists can get quite long. For the Books it’s not unusual that a list can contain 1,000 titles, so can require 1001 calls just to get the method of the download.
+Because of this we are one of the proposers of merging the getContentList with getContentMetadata which would be very important for the scaling of the protocol.
+
+Clients have been found to stream text resources individually, which can cause hundred if not thousands of calls in a DAISY book. So we propose the ability to package content into groups as a way to simplify download when streaming, so the client downloads a single zip of text files, then stream the other resources as needed. Serving all of the text resources is currently causing quite a heavy load on the MTM Book service.
+
+Currently the use of New and Issued Lists are open to interpretation and have been implemented by clients in different ways – requiring client specific workarounds rather than a single server solution for all. It would be good if this Group could clarify how Lists should be used.
+
+Claudio: echoed important point about progressing 1.1, and that it is not an option to not make any changes to the protocol otherwise it will lose relevance with what we are trying to do. Question about managing a zip type download. Should content be zipped on demand or pre-zipped in advance?
+
+Fredrik: packaging just the text material as a zip should be relatively small and as pre-zipped content should have a fairly small impact on storage. Currently storing zipped and unzipped versions of content on the MTM Newspaper service and it works well. On demand zipping would cause too much load, but because zip is very effective at compressing text it works well.
+
+Claudio: can player manufacturers support this?
+
+Shinano Kenshi: should be possible with clear definition. Not sure how many files should be packed as the primary zip to initiate playback, and if all text is packaged as a single zip it could slow the start of playback, but good advantage in having everything packaged as one file. 
+
+Fredrik: Initial thought was to package SMIL files because there are quite a few of them, and could be available as zipped and unzipped – so a player wanting quick start up could download a few individual files, then download the rest in the zip. 
+
+Jelle: Can see how this might be beneficial, but not sure how many clients request text files in advance?
+
+Fredrik: we have seen some clients download all text files in advance, and if all clients agree not to do it it’s ok, but they all need to be downloaded eventually so might benefit from being zipped in the long run.
+
+Jelle: our player downloads a SMIL then the associated MP3, players should probably refrain from requesting all SMIL files at start up.
+
+Fredrik: if we can assume an equal number of SMIL and MP3 files, zipping can reduce the number of server calls by almost 50%.
+
+Jelle: might be an alternative server solution through HTTP protocol to reduce load.
+
+Fredrik: agreed, but this suggestion helps lower server requests as well as reducing bandwidth.
+
+Jelle: agree it has some benefits so not disagreeing with it.
+
+Dave: please ensure all your suggestions are captured on the documentation.
+
+Fredrik: it has been recorded in items requiring clarification, if you think it is good we can move it to one of the other lists.
+
+Dave: the other topic which was mentioned, and something we can touch on now relates to the number of changes which can be implemented in this revision, the importance of backwards compatibility and the limitations that may present in moving the specification forward. Geoff had comments on this topic in the email circulated.
+
+Geoff: we have a successful implementation of the current protocol and are rather invested in it, and are not looking to support two implementations of the protocol for any length of time. Our interests lie in maintaining the status quo because our other options are to look at commercial distribution solutions. We’re not looking to take on the costs of revising our service so soon after implementation.
+
+Keith: I would agree with having an update which tries to provide enhancements to address some of the problems some people have had without making major changes. There might be questions over the need for 2.0 update given the availability of commercial alternatives.
+Would be good to address some of the issues in the current spec without making architectural changes to the specification – providing 1.1.
+
+Fredrik: MTM have big plans, especially for the book service, to expand the number of titles and users, but the current system we current have is not scalable so changes are needed. What we can do is make it as backwards compatible as possible. Some small changes for 1.1 are absolutely necessary, otherwise the protocol won’t be able to meet today’s demand.
+
+_Please confirm attribution_ NLB: We would like to see the development of this protocol, not just small enhancements. Need to straighten up the protocol. And I also support the need for changes in the protocol.
+Fredrik: I also agree with the development of 1.1 and 2.0, which will allow some quick changes which will hopefully not affect the implementations too much while we also have 2.0 where we make changes for the future as well.
+
+Jelle: it should be noted that the libraries can choose a version 1.0, 1.1 or 2.0, but the players will be required to support all versions which place a load on the players and that might impact on cost. 
+
+Claudio: players that support 1.1 should also support calls from a 1.0 server. Service owners should be free to remain at 1.0 for as long as they wish without fear of forwards compatibility from players.
+We need to ask ourselves if the protocol will still be relevant in the future, or should we leave it as a dying standard? I think we formed this group in order to sustain the protocol well into the future as a DAISY option, but also as a commercial option for EPUB which don’t currently have a free open source protocol. These changes need to happen now, otherwise we’re looking at problems with players – because if everyone goes to a separate commercial protocol there will be no real compatibility across organisations – and I don’t think that’s something we want.
+We have all invested in successful implementations of the current protocol, and we are here to ensure it continues for the next 3 - 5 years. 
+While there are some big changes like implementation of REST and EPUB3 should be considered for 2.0, for 1.1 we should be looking at changes which will enable player manufacturers to maintain support for 1.0 servers but support new features for those who choose to migrate to 1.1.
+
+Jelle: so will 2.0 incorporate 1.1 and 1.0 so will players will automatically support them?
+
+Claudio: we don’t yet know what 2.0 will look like, but a move to REST might change that. Simultaneous support for REST and SOAP within a player might not be technically possible. The idea is 1.1 should be backwards compatible with 1.0 so that any new version of a player will be backwards compatible. 
+
+Jelle: that sounds fine. Questions over EPUB not currently compatible though getContentList.
+
+Claudio: while you can currently push any file, but streaming EPUB3 is not possible. A conversation for discussion with IDPF.
+
+Jelle: it technically should be possible, but agree it is hard to do.
+
+Dave: EPUB3 support is currently on the 2.0 potential list, but can always move as we continue this process.
+It feels like we found common ground where everyone agrees that we don’t want to implement changes which impact cost of servers or reading systems, find a solution which adds increased functionality that everyone is looking for as an option, but remain backwards compatible if at all possible – so something for us all to strive for.
+
+== Next Steps ==
+In discussion it was agreed to extend the discovery process for 1 more week, ending on Monday 28 July. 
+
+*Action all*: visit the Wiki and comment on existing proposals, or add new proposals. The email list may be used for lengthy comments which don’t naturally fit the Wiki.
+
+Links to the three documents:
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/ProposedDODPChanges
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/Items_Requiring_Clarification
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/FutureDODP2Changes
+
+== AOB ==
+
+Skype call – problems with the clarity of the call this week reinforce that Skype is not currently a suitable alternative to the conference call number. 
+
+Presentations - Claudio suggested we hear from a reading system developers.
+Dave: agreed – next two slots filled by developers.
+
+== Next meeting ==
+Monday 21 July 11am UTC
+
+Rotating Short Presentation of learning points from implementing DODP – from Solutions Radio
+
+Presentation Monday 28 July from Shinano Kenshi
+
