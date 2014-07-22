@@ -1,0 +1,104 @@
+#summary DODP refresh call 21 July 2014
+
+= Notes of the Telecon 21 July 2014 =
+
+Attendees: Dave Gunn (chair/scribe), Keith Creasy, Mark Klarer, Andrew Furlong, Claudio Montalban, Fredrik Schill, Bert Paepen, Geoff Gilmour-Taylor, Rodger Beatty, Dominic Labbé.
+
+Regrets: Hiro Fujimori, Takuro Shiroki, Per Sennels, Johan Abbors.
+
+
+== Actions ==
+
+All – help progress the Wiki documents by adding Comments with proposed edits.
+
+All - ensure any suggestions for protocol enhancements are submitted this week (deadline 28 July)
+
+All - review and comment on the new documents which will be circulated on 25 July
+
+== Rotating short presentation of learning points from implementing DODP ==
+
+Jelle Martijn Kok – Solutions Radio (notes provided)
+
+My name is Jelle Martijn Kok and I am a software engineer at Solutions Radio. Solutions Radio is based in Delft, the Netherlands, and is a friend of the Daisy Consortium since 2006.
+
+We have a reading system (Webbox2) which is a standalone box with a built in speaker, ethernet connection, wireless lan, USB and SD card. It is optionally capable of using a CD drive and connecting to UMTS/G3 networks.
+
+Our reading system uses a menu structure which is centrally maintained in a very similar way as the dynamic menu. However it is actually implemented in REST. For our reading system we have implemented remote configuration, control, upgrades and debugging to help us, our resellers and the end user in easily using the player.
+
+Using DOD we can transfer daisy 2.02, audio files, live streams, (zipped) epub and much more. The primary requirement is a correctly defined content-type.
+
+We also have a DOD-distribution solution present at:
+  * the Netherlands (TV subtitling and CBB)
+  * Germany (TFA)
+  * Finland (NTL)
+  * Iceland (HBS and BIOVI)
+  * Various test systems for smaller and bigger potential customers in Europe
+
+We have encountered no major interoperability issues:
+  * We can connect to other libraries (Aangepast lezen / Dedicon / CNIB / Vision Australia / Nota / NLB)
+  * Plextor is actively using our NTL (Finland) and subtitle system (Netherlands)
+
+Which potential problems did we encounter in (implementing) the protocol:
+  * A library might fine tune the menu structure to one reading system. This might be a disadvantage for other reading systems.
+  * Speed - some requests may be needed and (logon) delays can occur. After some streamlining we have a very nice 2 seconds from logOn to content menu for aangepast lezen/dedicon
+  * Range requests are not required. This should really be mandatory (for streaming and download resume)
+  * Encountered no libraries which served pdtb2 protected content. So untested.
+  * Bookmarking is handled locally. This may interfere with centralized bookmarks.
+
+In my opinion the hardest part of implementing the protocol does not lie in the protocol itself, but rather in integrating the daisy online system with existing library databases and content servers. Switching to REST will not give any advantages in this specific area.
+
+Our first version of our player actually did communicate using a proprietary REST protocol to the servers of Dedicon. This protocol is truly much more effective (network wise) than SOAP. However it might not be easy to standardize such a protocol so it could correctly be implemented by different parties.
+
+Conclusion:
+
+Our contribution will be to participate in the meetings and monitor any changes to the protocol. When parties have difficulties implementing the protocol we can share our experience gathered by building these systems. If the outcome is that the protocol will change, we will implement these changes in our DODP-server implementation as well as in our on-line player (Webbox2)
+
+If you would like our radio to test connect to your implementation or test our radio yourself, just let us know.
+
+Questions / comments on the presentation:
+Andrew – commented that it’s great to have participation of Solutions Radio and other reading system developers in the group, their involvement is important.
+
+== Next steps ==
+
+Discovery process closes on 28 July, but there will not be a call next week.
+
+Claudio - an update on the collation process.
+
+We are working on a new document which contains atomic points and feature requirements of points raised so far, to a narrow and clear set of requirements for us to comment on. By the end of this week we will circulate the documents which contains the feature requirements submitted so far.
+
+People can review the features next week to comment on them and ensure all feedback has been captured, and we have clearly understood the outcomes people expect from the modifications to the protocol.
+The next call on the 4 August we can use the document to proceed into discussion around implementation, looking at technical solutions, trying to minimise issues with backwards compatibility and minimise complexity of the protocol.  
+
+It may be that some features are dropped (or moved for consideration in subsequent updates) down the line if there is a problem with implementation.
+
+The other editors Fredrik and Johan will be the first to proof the document, after which it will be circulated to the wider group.
+
+Dave – one of the emails which came through from Nick this week was a suggestion to simplify the feedback process, which is currently quite challenging using comments within the document. We hope the new documentation will address this, and make it easier to provide feedback.
+For the remainder of discovery (the next week) we will continue to use comments on the Wiki or email comments, and migrate to a new commenting process with the new documents.
+
+The purpose of discovery is for everyone to voice their suggestions for functionality, feature updates and proposed changes to the protocol. After this week there ideally would not be any new suggestions for changes – so please take the time to ensure your thoughts and ideas have been captured, because after this we may need to get tougher about new ideas being brought to the table.
+
+Links to the three live documents:
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/ProposedDODPChanges
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/Items_Requiring_Clarification
+
+http://code.google.com/p/daisy-online-delivery-refresh/wiki/FutureDODP2Changes
+
+== AOB ==
+
+Version numbering protocol – Fredrik circulated an email with a link to http://semver.org/ which has guidelines on minor and major version numbering.
+
+Dave – this is an excellent resource which we can use at a later date, but because we haven’t yet agreed the contents of the update I recommended that we continue with the draft naming system we’ve got. When we have enough information and consensus about the update we can use the guidelines to apply a formal version number. 
+
+Fredrik - agreed.
+
+
+== Next meeting ==
+
+No meeting next week – but documents will be circulated for review. 
+
+Next call is on Monday 4 August 11am UTC with a presentation from Shinano Kenshi
+
+Presentation Monday 11 August will be from Humanware
