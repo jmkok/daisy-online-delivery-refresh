@@ -1,0 +1,26 @@
+Analysis of use cases and requirements for version 2 (aka 1.1)
+
+<wiki:toc max_depth="2" />
+
+<hr />
+
+= Use Case Actors =
+
+|| *Actor* || *Descrition* ||
+|| Device || A Device that is capable of connecting to and consuming content from an instance of the DAISY Online Delivery Protocol ||
+|| DAISY Online / Service || A Instance of the DAISY Online Delivery Protocol ||
+|| User	|| The External controller of the Device (normally a Person) ||
+|| Content || The collection of Media offered by an instance of a DAISY Online Service ||
+||Content Item || An individual piece of Content - eg. DAISY Audio book ||
+
+= Template =
+
+== Requirement X: Short name or description==
+
+|| *What* || copy-text-here ||
+|| *Use case* || ||
+|| *Notes* || ||
+|| *Source* || [ProposedDODPChanges] #X||
+|| *Who* || ||
+|| *Why* || ||
+|| *How* || ||
