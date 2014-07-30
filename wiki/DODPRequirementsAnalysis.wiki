@@ -1,4 +1,4 @@
-Analysis of use cases and requirements for version 2 (aka 1.1)
+#summary Analysis of use cases and requirements for version 2 (aka 1.1)
 
 <wiki:toc max_depth="2" />
 
