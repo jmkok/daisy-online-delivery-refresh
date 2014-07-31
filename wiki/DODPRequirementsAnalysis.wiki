@@ -206,7 +206,7 @@
 || *What* || We require the ability to keep bookmarks up to date in a way the is less comms intensive than V1.0 ||
 || *Use case* || The user logs on to the device and in less comms that is used currently, the current bookmark is returned to enable the device to set the current reading position while other bookmark information is loaded in the background. ||
 || *Notes* || ||
-|| *Source* || ||
+|| *Source* || [ProposedDODPChanges] #15 ||
 || *Who* || ||
 || *Why* || When bookmarks are used (expecially a lrage number) it is inefficient (affecting performance), to access all Bookmarks in order to find the current reading position. ||
 || *How* || ||
