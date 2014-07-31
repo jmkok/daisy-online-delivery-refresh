@@ -176,7 +176,7 @@
 || *What* || We require a reduction in the number of Calls to DAISY Online required to build a Bookshelf. ||
 || *Use case* || A device connects to DAISY Online and is able to build a bookshelf with significantly less calls. ||
 || *Notes* || This requires looking at such changes as; Merge GetContentList and GetContentMetadata, Add GetContentList All. This would mean the number of calls made to build a bookshelf would be reduced while the fragement returned would be larger. This method could use a filter to determine which categories of content to supply (i.e. New, Issued, Expired or any combination). ||
-|| *Source* || [ProposedDODPChanges] #8 ||
+|| *Source* || [ProposedDODPChanges] #8 and #9 ||
 || *Who* || ||
 || *Why* || Currently to build a Bookshelf many operations need to be called.   Example, 3 calls to GetContentList and then a call to GetContentMetadata for each item on the bookshelf.   Reducing the number of calls to the Service should improve the performance of building the Bookshelf. ||
 || *How* || ||
@@ -186,7 +186,7 @@
 || *What* || We require a reduction in the number of calls to complete a DAISY Online handshake. (Logon, SetReadingSystemAttributes, GetServiceAttributes). ||
 || *Use case* || Device connects to DAISY Online and issues a logon containing the details of the device (ReadingSystemsAttributes) and is returned the ServiceAttributes. ||
 || *Notes* || Merging SetReadingSystem Attrbutes and Logon allows the Service to fail the logon using information supplied in the call to SetReadingSystemAttributes - i.e. device specific information. ||
-|| *Source* || [ProposedDODPChanges] #9 ||
+|| *Source* || [ProposedDODPChanges] #10 ||
 || *Who* || ||
 || *Why* || Currently to logon to the Service, many operations need to be called.   Example, Logon, GetServiceAttributes, SetReadingSystemAttributes. Reducing the number of calls to the Service should improve the performance of building the Bookshelf. ||
 || *How* || ||
