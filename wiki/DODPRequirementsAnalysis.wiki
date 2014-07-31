@@ -196,7 +196,7 @@
 || *What* || We Require the complexity to secure downloadable resources to be reduced.   i.e Currently authentication is required to be supported by the Content script as it occurs outside of the DO session. ||
 || *Use case* || Device connects to DAISY Online and obtains resource URL's for a given Content Item.   Device can download content without the need to manage authentication. ||
 || *Notes* || 1. Current method - Content script authenticates for each resource call or hashed links are used. <br />2. Bring downloads into DO, therefore negating need for authentication as it is inside the active session. <br />3. Investigate use of Content Delivery Networks and potential to support them. ||
-|| *Source* || [Items_Requiring_Clarification] #5, Comment by MTM / Textalk ||
+|| *Source* || [Items_Requiring_Clarification] #5 and #9, Comment by MTM / Textalk ||
 || *Who* || ||
 || *Why* || This is an attempt to increase performance of content delivery while maintaining secure access to content. ||
 || *How* || ||
