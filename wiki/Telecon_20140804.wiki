@@ -1,0 +1,158 @@
+#summary DODP refresh call 4 August 2014.
+
+= Notes of the Telecon 4 August 2014 =
+
+Attendees: Dave Gunn (chair/scribe), Keith Creasy, Claudio Montalban, Fredrik Schill, Bert Paepen, Geoff Gilmour-Taylor, Rodger Beatty, Dominic Labbé, Hiro Fujimori, Takuro Shiroki, Per Sennels, Johan Abbors, Ole Holst Anderson.
+
+Regrets: Jelle Martijn Kok
+
+== Actions: ==
+*Action All*: please review the latest Wiki document https://code.google.com/p/daisy-online-delivery-refresh/wiki/DODPRequirementsAnalysis to ensure your original requirements have been recorded, and if they are missing please let us know on list or via comments.
+
+*Action Editors*: update the existing Wiki for Items requiring clarification to indicate which have been adopted in the new Wiki, and those which still require further information and are at risk of being moved for consideration at a later protocol update.
+
+== Update on documentation changes ==
+Claudio: thanks to Johan and Fredrik for converting and updating the Wiki document. We have essentially condensed the feedback received on the other documents and extracted the requirements from those, recording what we want done and not at this point how it should be achieved. Duplicate items have been condensed, and links have been placed to back trace comments to their original suggestion to ensure the spirit of the suggestion has been captured. This has been uploaded to the Wiki.
+
+Dave: just to echo that thanks to Johan, Fredrik and Claudio for helping transition the documentation into the new Wiki. The next step will be to create Issues for each requirement in the Wiki to address one of the earlier pieces of feedback around complexity of commenting on everything within a single document. Discussions can now take place within the issues and when that reaches conclusion it can be reflected within the main Wiki document.
+
+We will also try and incorporate the comments from the original documents in the Issues, which we will do where possible.
+Once the Issues documents are created we will be looking for the entire working group to jump on there to engage in discussion on the specific requirements to progress and resolve the How.
+
+Claudio: request for help creating Issues.
+
+Dominic, Johan and Fredrik offered to help.
+
+Dave: Nick has also offered to advise on Issue creation and setup if required.
+
+== AOB ==
+Johan: question on items requiring clarification. Some good points appear not to have been incorporated, but may not have been included.
+
+Claudio: ones which were commented on and clarified were migrated, some were condensed. I would encourage everyone to look at the latest Wiki and if they don’t see their original comment reflected please let us know. We believe all of the key concepts, and everything clarified has been moved across.
+
+Fredrik: perhaps we should list which have already been moved across.
+
+Johan: we can strike through those adopted and leave those which remain so it is clear and we don’t mix the numbers up.
+
+*Action Editors*: update the existing Wiki for Items requiring clarification to indicate which have been adopted in the new Wiki, and those which still require further information and are at risk of being moved for consideration at a later protocol update.
+
+Geoff: question about process, how are we going to decide which items are in or out of scope for this revision and which are pushed back to 2.0.
+
+Dave: good question thanks, my suggestion would be through discussion and by consensus. Everything we have been doing is relevant to the broader specification, weather adopted at this point, or delayed to a later revision. Exactly what makes it through when are entirely down to this working group. In this current stage of discussing requirements in the issue trackers, we will hopefully resolve ways to achieve the How and then be able to assess the relevance of including it in the current revision. At the moment I wouldn’t want to define the process too much, as I’m sure it will be a very lively and active discussion which will help resolve exactly what makes it through.
+
+Johan: suggestion that we go through requirements on the call (e.g. 1-10) to decide in or out of scope. 
+
+Dave: great suggestion. I hope we’ll see activity on the Issue tracker define the requirements which require debate. There may be some which are relatively straightforward to agree and come to the call for confirmation, whereas others may need to be revisited several times. It is my intention that we don’t simple let anything drift through, that everyone has an opportunity to comment on the issue trackers, and it then comes to this call for confirmation and to ensure nobody has missed out. 
+
+Johan: another question since I have been away, saw something about version numbers, 2.0 / 3.0?
+
+Dave: To this point (in discovery) we have deliberately not made any decisions about numbering or contents of the update, but Fredrik has helpfully highlighted a process for identifying major vs minor update numbering, and we once we’ve agreed the contents of this update we will use that method to resolve which numbering should be used. 
+
+Johan: but nothing has been decided about backwards compatibility?
+
+Dave: We got as far as - we would like it to be backwards compatible, and that there might be a requirement on the reading systems to be backwards compatible and support previous versions of the protocol.
+
+
+== Rotating short presentation (10 minute) of learning points from implementing DODP - Presentation of Shinano Kenshi ==
+(notes provided)
+
+Shinano Kenshi is a manufacturer of DAISY player/recorder, PLEXTALK. 
+We developed and sold DAISY online player, as well as add-on solution of DAISY online server for existing library server.
+We supplied DAISY online players to many countries and server solution to Japan Braille Library (Sapie) and CNIB.
+
+Dynamic menu function was implemented for Sapie so that users can search and choose a specific title they want to read. It is popular in many countries that users tell/register their preference to the library service and library provides books/materials based on the user’s preference. However, such service model is not popular in Japan, and majority of users want to choose specific title by themselves.
+
+The dynamic menu system also provides ability to search title to the users who do not operate computers.
+
+=== 1 PLEXTALK device ===
+We have two DAISY Online hardware players; one is Linio (desktop), another one is Linio pocket (portable).
+
+Our players are distributed to end users in two ways. One is that the library / organizations distributes the players to the users. Another one is that individual users purchase player.
+
+PLEXTALK supports streaming, or downloading playback. It also supports Service announcements and dynamic menu also.
+
+After we released these players, we were working with many of DAISY online service. 
+
+As Jelle from Solution radio mentioned in previous meeting, we also think that SOAP protocol is enough compatible with different services.
+The important thing is, how to utilize this protocol to realize good service to end users. So, we worked for followings.
+
+=== 2 Player Configuration ===
+To start using DAISY Online service, it requires pre-configured information.
+
+At the least, URL to the online service, user ID, and password are required. Because user credential should be differs to every device. It requires all of player configured one by one.
+
+We experienced following variations for configuration works.
+
+1- Warehouse configuration by loading configuration file.
+
+2- At the users house. PLEXTALK has a menu option for DAISY online. Users load configuration file, or type-in user ID and password from keypad.
+
+In the DAISY online specification, it does not define about how streaming or downloading is chosen. So, PLEXTALK has configuration for this.
+
+1- Choice of streaming, or downloading
+
+2- Permission of transfer the books from bookshelf to external media.
+
+It is normal that such policy are differs from books, or libraries. Thus, it is required to make customization for each DAISY Online service.
+
+When version 1.1 specification improves this area, it definitely helps pre-configuration works in library warehouse. And, it eases the player to compatible with different service. This is benefit for both of server side and client side.
+
+=== 3 DYNAMIC menu ===
+
+DAISY Online service in Japan “SAPIE” is utilizing DYNAMIC menu for on-demand book search service.
+
+It has various options to select books. For example, selecting by recent titles, by frequently asked titles, or searching from keyword.
+Users are very pleased about this service. Because they can search for their favorite books by themselves, when they want.
+
+Once user interfaces for each of question response is implemented, it could fit for various type of search services. Calling getQuestions, then, return answer for it. Continues this step one by one is simple, but could have great extent of service valuations.
+
+=== 4 Announcement ===
+“SAPIE” service also utilizing announcement service.
+It delivers announcement from Organization, SAPIE service, and local society information.
+
+We noticed following concerns, or ideas.
+1- Once the announcement is set “As Read”, user cannot confirm announcement any more.
+2- When the announcement is important information, we wanted to keep it in the announcement list. But, no way to refuse “As Read” operation.
+3- To make a notification of new announce delivered, player is polling, and inform it if new announcement delivered.
+
+=== 5 User interface ===
+When developing hardware player, it is difficult to adjust user interface differently for each locales. On the other hand, library service wants to represent their use case as much as possible. This asks player device to fit user interface as much as possible.
+We know that there is no way to solve this perfectly. However, when the use case, or detail purpose are described strictly in the specification, it helps client player developer to design suitable user interface with keeping compatible to different service.
+
+1- Bookshelf grouping
+We experienced some of organizations would like to grouping the bookshelf books. For example, magazines, news, and books. But current specification did not provide solution for this.
+
+2- OUT_OF_BAND
+About the OUT_OF_BAND, it is defined in the section of “example of content synchronization sequence” in DAISY Online informative section. It says, Reading system “CAN” automatically synchronize it. This means, automatically issue of the new books.
+3- It is problem, when Player does not follow this informative section. Even the service is intending to put all new books automatically to issued list, but this will not be satisfied.
+
+In addition to it, Server is possible to support both of OUT_OF_BAND and BROWSE model in server side. How player should behave at this time?
+
+It is helpful when specification has detail explanation around this area.
+
+4- Delete the book when it returned
+In the protocol, it is required to delete the local downloaded book when book returned.
+However, we have experience of following use case.
+  * The service allow user to keep the book even after the book has been returned.
+  * Once downloaded book has been copied to external media, it is not possible to delete it.
+
+=== 6 Backward compatibility ===
+As we discussed in previous meetings, it is important to reserve compatibility of each version of DAISY Online protocol.
+
+== Discussion Q&A on presentation ==
+Johan: you mentioned that you provide players and a service, but you didn’t mention any difficulties on the service?
+
+Hiro: some libraries wanted to implement categories which were not possible.
+
+Johan: yes it’s a limitation in the current protocol that you can’t group content. Do you have a full DAISY Online service? 
+
+Hiro: yes, current live services include Japanese Braille Library and CNIB. The CNIB implementation includes a bookshelf, and the Japanese Braille Library has a bookshelf and dynamic menus.
+
+Claudio: question about dynamic link menus function – we have found the interface on players is too complicated for many people to user, due to the multi-use function keys. Do you have any experience on how to improve on the input part of dynamic link menus?
+
+Shinano Kenshi: Using the arrow and enter keys can be relatively simple to navigate menu options for selectable content, but key word search for text entry can require some advanced experience of the user interface. Even the most simple navigation requires arrow navigation and enter key as a minimum requirement.
+If this process is too complicated for a user, book selection can always be conducted via phone to a librarian who can help them choose a book and add the title to their bookshelf.
+
+== Next meeting ==
+Monday 11 August 11am UTC - presentation will be from Humanware
+
