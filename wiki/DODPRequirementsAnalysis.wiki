@@ -27,7 +27,7 @@
 
 = User Setup =
 
-== Requirement 1: ==
+== Requirement 1: Setup of user credentials ==
 
 || *What* || Currently there is no method to support the automatic configuration of device user credentials. We require the ability for a device, based on the device unique ID, to obtain the user ID and password ||
 || *Use case* || A device containing a known unique identifier (e.g. serial number) attempts to connect to DAISY Online for the first time and recevies configuration information including user name and password. (In this case the device has been pre configured with the DAISY Online URL) ||
@@ -37,7 +37,7 @@
 || *Why* || The service provider has no standard means to implement reading system setup without manual steps. This is a significant factor slowing down delivery and adoption of the online service. Currently the hardware players requires manual configuration by technical staff. <br /> A standard-based, interoperable (manufacturer-independent) way of registering a reading system to a service would eliminate the manual steps. For example: Setting up ID, password, server address via network ||
 || *How* || ||
 
-== Requirement 2: ==
+== Requirement 2: Setup of service URLs ==
 
 || *What* || Currently there is no method to support configuring the DAISY Online URL for a device. We require the ability for a unique device ID to be used to return the service URL to the device. ||
 || *Use case* || User turns on the device for the first time but contains no service URL, the device connects to a "discovery service" which returns the Service URLs that that device is permitted to connect to. ||
@@ -47,7 +47,7 @@
 || *Why* || This allows devices to be pre-configured to a general discoery service negating the reqruiement to have devices pre-configured by the vendor to a particular DAISY Online service. ||
 || *How* || ||
 
-== Requirement 3: ==
+== Requirement 3: Discovery of nearby services ==
 
 || *What* || Currently there is no method for a device to discover services available to a client in that area. We require the ability to connect to a service that returns valid service URLs for that geographical area and organizational details. ||
 || *Use case* || User connects to the discovery service and is returned a list of availabe services available for that device based on the devices location. ||
@@ -59,7 +59,7 @@
 
 = Content protection / Content management on devices =
 
-== Requirement 4: ==
+== Requirement 4: Start/stop time of a download/stream ==
 
 || *What* || Currently there is no way to determine the start and end time of a download or stream. We require the ability to determine this. ||
 || *Use case* || The DAISY Online service recieves a request from the device for a given action type (eg download or stream) It then proceeds to download the indivudual files and finally sends a request to complete or cancel the action. ||
@@ -69,7 +69,7 @@
 || *Why* || Start and End times support such functions as Statistics collection, Download / Stream monitoring, Performance / User experience monitoring etc. ||
 || *How* || ||
 
-== Requirement 5: ==
+== Requirement 5: Supported resource delivery (download/stream) by service ==
 
 || *What* || Currently there is no way to determine if a DASIY Online service supports Downloading, Streaming or both. We require the ability for a device to determine if a service supports download, streaming or both. ||
 || *Use case* || Device authenticates and retrieves service attributes and can determine whether the service can support download or streaming. ||
@@ -79,7 +79,7 @@
 || *Why* || This can be useful to a device as it can modify / simplify it's user interface based on knowing what operations are supported. ||
 || *How* || ||
 
-== Requirement 6: ==
+== Requirement 6: Supported delivery (download/stream) of a content item ==
 
 || *What* || Currently there is no way to determine if an individual content item can be downloaded or streamed. We require the ability for a device to determine if a given content item can be downloaded or streamed. ||
 || *Use case* || When the device retrieves indivudual content metadata it can determine if an item can be downloaded or streamed. ||
@@ -89,7 +89,7 @@
 || *Why* || This allows support for content that may for example, ve suitable for streaming but due to licesnse restictions, cannot be downloaded. ||
 || *How* || ||
 
-== Requirement 7: ==
+== Requirement 7: Time framed content delivery ==
 
 || *What* || Currently there is no way to stop the downoading or streaming of content at particular times of the day. We require the ability for a device to determine if a given content item can be downloaded or streamed at the time the request is made. ||
 || *Use case* || Prior to a download or streaming action begining the device can determine if the action is allowed. ||
@@ -99,7 +99,7 @@
 || *Why* || This can be used to reduce load on the service to manage Peak times.   For example, you may choose to not allow downloads during peak streaming time to reduce impact of downloads on streaming, reducing resources required to support the DIASY Online service. ||
 || *How* || ||
 
-== Requirement 8: ==
+== Requirement 8: Custom error message for denied content access ==
 
 || *What* || We require the ability for a device to receive a custom message from the service when a download or stream action is denied. ||
 || *Use case* || A Device attempts a download or stream action which the server rejects. A custom error message is returned (eg download is not available not, try again at 7pm). ||
@@ -109,7 +109,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 9: ==
+== Requirement 9: Separate resource URLs for downloading and streaming ==
 
 || *What* || Currently when a request for Content is made there is now way of knowing if it is for Streaming or for Download. We require the ability to return different URLs for the acquisition of content files depending on action type (eg download or streaming). ||
 || *Use case* || A device calls GetContentResources unforming the DAISY Online service whether or not it is for Download or Streaming and the correct URLs are returned. ||
@@ -119,7 +119,7 @@
 || *Why* || It may be useful for the type of resources used to supply files of Download or Streaming to be different.   It also may be useful to st different throttling limits depending on if the content is being streamed or downloaded. ||
 || *How* || ||
 
-== Requirement 10: ==
+== Requirement 10: Transfer of downloaded content to external media ==
 
 || *What* || There is currently no way of informing a device to restrict copying content to removable media. We require the ability for the server to inform a device whether a content item that is downloaded can be copied or contained on removable media (eg lock content to a device). ||
 || *Use case* || A device prevents copying a copyright restricted content item to external memory based on an attribute passed by the server. ||
@@ -129,7 +129,7 @@
 || *Why* || This would enable a Service to only allow the download of content to devices approved as supporting locking content to non-removable media - This is usful in providing offline access to content while maintaining / supporting content license restrictions. ||
 || *How* || ||
 
-== Requirement 11: ==
+== Requirement 11: Restrict user access to expired content (online) ==
 
 || *What* || We require the ability to ensure a user cannot access content that has expired while connected to the Daisy online service. ||
 || *Use case* || A Device connects to the Service and cannot access an item that has expired. ||
@@ -139,7 +139,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 12: ==
+== Requirement 12: Restrict user access to expired content (offline) ==
 
 || *What* || We require the ability to ensure a user cannot access content that has expired while not connected to the Daisy online service. ||
 || *Use case* || A User accesses their device and cannot access a content item that has expired. ||
@@ -149,7 +149,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 13: ==
+== Requirement 13: Identify download/stream requests for content resources ==
 
 || *What* || We require the ability to determine if a device is requesting a download or stream. ||
 || *Use case* || User requests download of a content item and the server is aware of the action type.  i.e. That it is a Download and not a request to Stream. ||
@@ -161,7 +161,7 @@
 
 = Streamlining Communication with the server =
 
-== Requirement 14: ==
+== Requirement 14: Content cover images ==
 
 || *What* || We require the ability to send cover images for a given content item to a device. ||
 || *Use case* || When a device builds a bookshelf it is able to receive relevant cover images. ||
@@ -171,7 +171,7 @@
 || *Why* || How should the image be recevied - i.e. A URL? We could add this to GetContentMetadata as a meta element, but we would need to have a standard name so all devices understood how to consume it. Check in DAISY 3 standard to see if they already have an element name for a cover image. ||
 || *How* || ||
 
-== Requirement 15: ==
+== Requirement 15: Reduced function call sequence for building a Bookshelf ==
 
 || *What* || We require a reduction in the number of Calls to DAISY Online required to build a Bookshelf. ||
 || *Use case* || A device connects to DAISY Online and is able to build a bookshelf with significantly less calls. ||
@@ -181,7 +181,7 @@
 || *Why* || Currently to build a Bookshelf many operations need to be called.   Example, 3 calls to GetContentList and then a call to GetContentMetadata for each item on the bookshelf.   Reducing the number of calls to the Service should improve the performance of building the Bookshelf. ||
 || *How* || ||
 
-== Requirement 16: ==
+== Requirement 16: Reduced function call sequence for handshake/session ==
 
 || *What* || We require a reduction in the number of calls to complete a DAISY Online handshake. (Logon, SetReadingSystemAttributes, GetServiceAttributes). ||
 || *Use case* || Device connects to DAISY Online and issues a logon containing the details of the device (ReadingSystemsAttributes) and is returned the ServiceAttributes. ||
@@ -191,7 +191,7 @@
 || *Why* || Currently to logon to the Service, many operations need to be called.   Example, Logon, GetServiceAttributes, SetReadingSystemAttributes. Reducing the number of calls to the Service should improve the performance of building the Bookshelf. ||
 || *How* || ||
 
-== Requirement 17: ==
+== Requirement 17: Reduced function call sequence for accessing protected content ==
 
 || *What* || We Require the complexity to secure downloadable resources to be reduced.   i.e Currently authentication is required to be supported by the Content script as it occurs outside of the DO session. ||
 || *Use case* || Device connects to DAISY Online and obtains resource URL's for a given Content Item.   Device can download content without the need to manage authentication. ||
@@ -201,7 +201,7 @@
 || *Why* || This is an attempt to increase performance of content delivery while maintaining secure access to content. ||
 || *How* || ||
 
-== Requirement 18: ==
+== Requirement 18: Less computation intensive bookmark syncronisation ==
 
 || *What* || We require the ability to keep bookmarks up to date in a way the is less comms intensive than V1.0 ||
 || *Use case* || The user logs on to the device and in less comms that is used currently, the current bookmark is returned to enable the device to set the current reading position while other bookmark information is loaded in the background. ||
@@ -211,7 +211,7 @@
 || *Why* || When bookmarks are used (expecially a lrage number) it is inefficient (affecting performance), to access all Bookmarks in order to find the current reading position. ||
 || *How* || ||
 
-== Requirement 19: ==
+== Requirement 19: Zipped downloading of content resources ==
 
 || *What* || We require a reduction in the number of calls needed to obtain the content item media increasing overall efficiency and performance. <br />This would require the ability for a Device to inform the Service on if it supports receving zipped content. ||
 || *Use case* || A device connects to the Service and informs the Service it can handle Zipped content.   When attempting to access content, It receives a reduced number of URL's from which the content can be downloaded. ||
@@ -223,7 +223,7 @@
 
 = Best Practice Guide =
 
-== Requirement 20: ==
+== Requirement 20: Best practice for searching via Dynamic Menus ==
 
 || *What* || We require clear guidance on how to use Dynamic menus to support search functions also promoting a standard approach.  This would cover support for subscribable content. ||
 || *Use case* || ||
@@ -233,7 +233,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 21: ==
+== Requirement 21: Clarification of lastItem in content lists ==
 
 || *What* || We require a Best Practice statement that discusses the use of lastitem parameter in GetContentList, that explains that a Device should carefully manage the page size as some services (especially Search ) can result in thousands of results being returned. ||
 || *Use case* || ||
@@ -243,7 +243,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 22: ==
+== Requirement 22: Clarification of new vs. issued content ==
 
 || *What* || We require a Best Practice statement that discusses the use of New vs Issued Content with a view to promoting the Bookshelf style of implementation. i.e The Bookshelf will always show all content currently available regardless of if it has been downloaded to another device. ||
 || *Use case* || ||
@@ -253,7 +253,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 23: ==
+== Requirement 23: Clarification of new content items ==
 
 || *What* || We require a Best Practice statement that clarifies the definition of terms such as New Content Item.  Eg. Is it a New Item on the Users bookshelf or is it a New item in the Libraries collection. ||
 || *Use case* || ||
@@ -263,7 +263,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 24: ==
+== Requirement 24: Best practice for devices how to consume content ==
 
 || *What* || We require a Best Practice statement advising Client Developers on methods of how to best access and consume DAISY content for streaming. ||
 || *Use case* || ||
@@ -273,7 +273,7 @@
 || *Why* || To ensure client devices are developed optimised for streaming. ||
 || *How* || ||
 
-== Requirement 25: ==
+== Requirement 25: Clarification for OUT_OF_BAND ==
 
 || *What* || We require a Best Practice statement on the meaning of OUT_OF_BAND along with more formal / strict guidelines on its implementation to avoid differing interpretations by service providers. ||
 || *Use case* || ||
@@ -283,7 +283,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 26: ==
+== Requirement 26: Clarification of returnContent for purchased vs. borrowd content ==
 
 || *What* || We require a Best Practice statement to clarify ReturnContent usage for Purchased Content and for Non Loaned Content - eg. Subscription Issue.   eg. the use of the RequiresReturn attribute and method ReturnContent.   This needs to also clarify how content (Purchasable or Not) can be removed from the Bookshelf but still be available in the future). ||
 || *Use case* || ||
@@ -295,9 +295,9 @@
 
 = New Features and Enhancements =
 
-== Requirement 27: ==
+== Requirement 27: Browse content without authentication ==
 
-|| *What* || Currently there is no way to support a guest borwse style access.   We require the ability to support guest style access, requiring no username or password to browse content. ||
+|| *What* || Currently there is no way to support a guest browse style access.   We require the ability to support guest style access, requiring no username or password to browse content. ||
 || *Use case* || A User connects to the service without supplying valid credentials and is able to search for content but not able to loan/consume etc. ||
 || *Notes* || ||
 || *Source* || [ProposedDODPChanges] #16 ||
@@ -305,7 +305,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 28: ==
+== Requirement 28: Support for content audio samples ==
 
 || *What* || We require the ability to send samples of an Audio content item to a device. ||
 || *Use case* || A User requests to listen to a sample of an Audio book and is able to stream a relevant section that enables them, for instance, to review the narrator. ||
@@ -315,7 +315,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 29: ==
+== Requirement 29: Support for content synopsis ==
 
 || *What* || We require the ability to send a synopsis for a content item to a device. ||
 || *Use case* || A User requests information for a Content item which includes a book synopsis. ||
@@ -325,7 +325,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 30: ==
+== Requirement 30: Support for custom error messages ==
 
 || *What* || We require the ability to send custom error messages. ||
 || *Use case* || The user attempts to log on to a device but this fails due to the user being temporarily barred from the service due to not paying the required fee's.   The user receives a custom error message advising why it is not possible including a recommended action. ||
@@ -335,7 +335,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 31: ==
+== Requirement 31: Support for service outage information ==
 
 || *What* || We require the ability to inform the users of an outage. ||
 || *Use case* || A User attempts to connect to the service while the service is not available due to systems maintenance.   They recevie a message describing the outage including an estimate of when the service is expected to be online. ||
@@ -345,7 +345,7 @@
 || *Why* || This is required to support general service maintenance improving the overall user experience. ||
 || *How* || ||
 
-== Requirement 32: ==
+== Requirement 32: Support for emergency messages ==
 
 || *What* || We require the ability to send emergency messages to users. ||
 || *Use case* || A User listens to an Audio Book and is interrupted with an Emergency message such as a warning the service is about to be taken offline, which is then read to them. ||
@@ -355,7 +355,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 33: ==
+== Requirement 33: Support for Service-level agreement (SLA) ==
 
 || *What* || We require the ability to block access to a users bookshelf instead presenting the Terms Of Service for agreement, and if agreed, allow access to the bookshelf. ||
 || *Use case* || A User (who has not agreed to ToS) logs on to a device and is presented the Terms of Serivce to read and agree to, and once done is able to access their bookshelf. ||
@@ -365,7 +365,7 @@
 || *Why* || This is required as many users of such devices may not have alternate access to the internet to review such Terms of Service. ||
 || *How* || ||
 
-== Requirement 34: ==
+== Requirement 34: Move returnBy to contentMetadata ==
 
 || *What* || We require the Return By date to be shifted from GetContentresources to GetContentMetadata as it serves no purpose where it is. ||
 || *Use case* || A device calls GetContentMetadata and recevies the ReturnBy date associated to the given Content Item. ||
@@ -375,7 +375,7 @@
 || *Why* || The ReturnBy date is relevant to the Content Item and not the individual files that make up the Content Item. <br />It is also reasonable to assume that some devices would like to use the ReturnBy date in the device bookshelf and this means that GetContentResources would need to be called for each item on the Bookshelf to complete building the Bookshelf further decreasing performance. ||
 || *How* || ||
 
-== Requirement 35: ==
+== Requirement 35: Support for sorted content lists ==
 
 || *What* || We require the ability to specify the sort order of the content list returned by the service.  Eg. Title, IssuedDate etc. ||
 || *Use case* || A device requests a content list, specifying the sort on IssuedDate Ascending and is returned the ContentList in this order. ||
@@ -385,7 +385,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 36: ==
+== Requirement 36: Support for categorized content lists ==
 
 || *What* || We require the ability to group Content List items into categories.   These categories would consist of data normally supplied as Metadata - eg. Format, Type etc. ||
 || *Use case* || A device requests a content list which includes the data element the device wishes to categorise on. ||
