@@ -7,6 +7,8 @@ If you are the author of these suggestions please clarify your requirement so we
 
 If no answers are received these will be added to v2 list for future review.
 
+An item which is <strike>striked</strike> has been included in the Revision 1.1 list.
+
 == *Items that require clarification – Otherwise out of scope for this revision 1.1 (possibly move to a V2 later)* ==
 
 *1.* No content delivery specification, requires complex external systems and authentication.  
@@ -17,12 +19,15 @@ If no answers are received these will be added to v2 list for future review.
 
 *4.* Multiple clients logged in to the same account can cause problems
 
+<strike>
 *5.* The handling of login and sessions in the current specification is too simple, which makes the protection of resources complicated. 
+</strike>
 
 *6.* PDTB2 is (too) hard and not always acceptable - delivery systems should be required to have an acceptable speeds (Unclear what comment about speeds means)
 
 *7.* Delivery systems should be required to enable persistent http(s) connections as some libraries have high delays (what is being asked for – is there handshaking that is occurring we are unaware of?)
 
+<strike>
 *8.* ‘Zipping Books’: 
 
 The number of requests could be kept down by packaging the entire book, or parts of it, in one or multiple ZIP files. This would be especially useful in cases where relatively small amount of text is contained within multiple files. 
@@ -38,9 +43,13 @@ We propose to add an optional attribute packageURI to each resource in the resou
 It needs to be investigated if the ZIP format is the most suitable packaging format, considering internationalization issues with filenames in ZIP-files. 
 
 It is also interesting to check if the ZIP-format can be used for streaming or only download. _(is there a requirement to ZIP books? zipping is not relevant for streamed content)_
+</strike>
 
+<strike>
 *9.* Session handling for permissions - Today, download permissions for resources need to be maintained by hashed links to the resources in question. Some form of session handling could be better in many ways. (requires explanation/clarification.  What is a use case?)
+</strike>
 
+<strike>
 *10.* getContentResources Recommendation
 
 There is a need for a recommendation to fetch as few XML files as possible before and during a reading session. 
@@ -48,16 +57,19 @@ There is a need for a recommendation to fetch as few XML files as possible befor
 The client ought to be ”intelligent”; caching in probable reading order rather than in sequential order, caching and ”prefetch” independent of the viewing mode of the client. 
 
 This allows for a much more direct reading/listening experience for the users than if all the material first needs to be fetched, especially in the case of large, full-text books. (is this a player/client function?)
+</strike>
 
 *11.* Only a few simple form and label objects are specified in Dynamic Menus’. Unable to display something as simple as an HTML list.
 
 Dynamic menus are (too slow and complicated), perhaps a standardized method for obtaining a list of custom lists provided by the system?  (Use case/example? This may be something that is service provider specific)
 
+<strike>
 *12.* You can only return a borrowed library book and not a newspaper issue which is part of a running subscription.
 
 Remove restriction on returnContent that’s only allowed to be called for borrowed content. This method could be used as a general means to remove/un-issue content from a user’s bookshelf. (assume this is asking for it to apply for acquired content as well?  
 
 _Is this about returning an acquired book to the server (to free up local space), to be able to download again later to continue reading? Do we need a special flag for acquired?)_
+</strike>
 
 *13.* It is not exactly clear how the reading system should present the content/structure/menu (just OUT_OF_BAND or BROWSE is not enough) (What else is required? Is this about Acquired content also?)
 
@@ -79,12 +91,14 @@ Method to push content from the service (complicated – wake device, etc.  (Thi
 
 _(Does this exist under the ‘Faults’.  Example required within the documentation)_
 
+<strike>
 *19.* Allow server-side sorting by providing an extra parameter to getContentList. The ‘sort’ value could be one of the (required) fields returned from getContentmetadata.
 This guarantees what sorting options are possible on this server.
 
 Sorting-operation could also be enabled by providing this option in the SupportedOptionalOperations of the getServiceAttributes call. (Requires further analysis.  
 
 _Example/use case? Potential additional load on server side – to get info and sort before providing info back to device.  Perhaps this should be a client side feature once it obtains metadata of the content.  If this is to go ahead, an option is to merge getContentMetadata with getContentList?)_
+</strike>
 
 *20.* GetContentMetadata.  Size returned will be the Download size of the content.
 This may differ from the Streaming size but allows a useful size to be returned without needing to know if the action will be download or Streaming. No API Change required.
