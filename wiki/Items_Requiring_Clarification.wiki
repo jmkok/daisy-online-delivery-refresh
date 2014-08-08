@@ -82,8 +82,10 @@ _(Use case?  Is this about presenting content in different bookshelves?)_
 *15.* "title" objects are not strictly defined: is it a raw title "bookshelf" or a descriptive title "this bookshelf contains 15 items".
 _(What is being referred to in the spec here? This may simply require an example in the documentation)_
 
+<strike>
 *16.* Lack of methods to identify a session end _(exists already - logoff)_
 Method to push content from the service (complicated – wake device, etc.  (This should be the player telling the server to ‘give me what you have on the users bookshelf…’)
+</strike>
 
 *17.* Please add a message/description-tag to the SOAP responses that can contain free text. (Example? What is the player supposed to do with this free text? Is this about faults too? This should be optional – ability for a player with TTS to read announcement)
 
