@@ -283,7 +283,7 @@
 || *Why* || ||
 || *How* || ||
 
-== Requirement 26: Clarification of returnContent for purchased vs. borrowd content ==
+== Requirement 26: Clarification of returnContent for purchased vs. borrowed content ==
 
 || *What* || We require a Best Practice statement to clarify ReturnContent usage for Purchased Content and for Non Loaned Content - eg. Subscription Issue.   eg. the use of the RequiresReturn attribute and method ReturnContent.   This needs to also clarify how content (Purchasable or Not) can be removed from the Bookshelf but still be available in the future). ||
 || *Use case* || ||
