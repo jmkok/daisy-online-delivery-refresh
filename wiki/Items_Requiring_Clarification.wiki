@@ -89,11 +89,15 @@ _(What is being referred to in the spec here? This may simply require an example
 Method to push content from the service (complicated – wake device, etc.  (This should be the player telling the server to ‘give me what you have on the users bookshelf…’)
 </strike>
 
+<strike>
 *17.* Please add a message/description-tag to the SOAP responses that can contain free text. (Example? What is the player supposed to do with this free text? Is this about faults too? This should be optional – ability for a player with TTS to read announcement)
+</strike>
 
+<strike>
 *18.* The feedback of the standard functions is sometimes too limited. E.g. if an issueContent does not succeed, the feedback will be FALSE, but the reason will be unknown and cannot be communicated to the end user. And in some cases you will need to perform multiple calls to collect all necessary data which is less efficient.
 
 _(Does this exist under the ‘Faults’.  Example required within the documentation)_
+</strike>
 
 <strike>
 *19.* Allow server-side sorting by providing an extra parameter to getContentList. The ‘sort’ value could be one of the (required) fields returned from getContentmetadata.
