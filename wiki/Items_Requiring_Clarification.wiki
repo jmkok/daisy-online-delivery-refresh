@@ -17,7 +17,9 @@ An item which is <strike>striked</strike> has been included in the Revision 1.1 
 
 *3.* But it would be good to have more support for text-to-speech in the protocol.
 
+<strike>
 *4.* Multiple clients logged in to the same account can cause problems
+</strike>
 
 <strike>
 *5.* The handling of login and sessions in the current specification is too simple, which makes the protection of resources complicated. 
@@ -108,14 +110,18 @@ Sorting-operation could also be enabled by providing this option in the Supporte
 _Example/use case? Potential additional load on server side – to get info and sort before providing info back to device.  Perhaps this should be a client side feature once it obtains metadata of the content.  If this is to go ahead, an option is to merge getContentMetadata with getContentList?)_
 </strike>
 
+<strike>
 *20.* GetContentMetadata.  Size returned will be the Download size of the content.
 This may differ from the Streaming size but allows a useful size to be returned without needing to know if the action will be download or Streaming. No API Change required.
 _(What is being asked for here? Is this a recommendation that ‘Size’ refers to complete size of book/item?)_
+</strike>
 
 *21.* The getContentMetadata has a meta-tag to provide custom/undeclared items to the getContentMetadata. I suggest to add something similar to the getServiceAttributes and setReadingSystemAttributes, so server and reading devices can exchange custom data.  
 _(This gets us away from there being a interoperable standard – Risk of a ‘looser’ standard)_
 
+<strike>
 *22.* Problem with multiple namespaces for DODP and Bookmarks (part of SMIL standard). _(what?)_
+</strike>
 
 *23.* Other thoughts on bookmarks - Today, fetching regular bookmarks or hilites, one at a time, cannot be done unless the client is already familiar with the individual bookmark/hilite.
 
