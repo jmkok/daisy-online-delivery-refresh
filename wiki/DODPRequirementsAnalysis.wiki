@@ -404,3 +404,20 @@
 || *Who* || ||
 || *Why* || ||
 || *How* || ||
+
+= Items to address in documentation =
+
+== Multiple clients for one account ==
+
+|| *What* || The documentation does not clearly specify how reading systems should behave when two or more devices are used for one account. ||
+|| *Source* || [Items_Requiring_Clarification] #17 and #18 ||
+
+== Returned size in content metadata ==
+
+|| *What* || The documentation does not clearly specify what the size element represents in the returned content metadata. ||
+|| *Source* || [Items_Requiring_Clarification] #20 ||
+
+== Conflict in namespaces DODP and Bookmarks ==
+
+|| *What* || Generating code from the current WSDL may result in conflict with type names from different namespaces. Include a known issues section in the documentation and provide work arounds for them if possible. ||
+|| *Source* || [Items_Requiring_Clarification] #22 ||
