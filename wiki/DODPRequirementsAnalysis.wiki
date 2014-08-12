@@ -394,3 +394,13 @@
 || *Who* || ||
 || *Why* || ||
 || *How* || ||
+
+== Requirement 37: Ambiguous repsonses ==
+
+|| *What* || We require that protocol operations (logOn, logOff, issueContent, returnContent, markAnnouncementsAsRead) never respond with FALSE, instead respond with a SOAP fault containing the reason. ||
+|| *Use case* || issueContent operation returns FALSE and the user may never know why the content can't be issued. ||
+|| *Notes* || Item was accepted as new requirement on the 2014/11/8 telcon ||
+|| *Source* || [Items_Requiring_Clarification] #17 and #18 ||
+|| *Who* || ||
+|| *Why* || ||
+|| *How* || ||
