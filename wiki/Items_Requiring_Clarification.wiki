@@ -73,11 +73,13 @@ _Is this about returning an acquired book to the server (to free up local space)
 
 *13.* It is not exactly clear how the reading system should present the content/structure/menu (just OUT_OF_BAND or BROWSE is not enough) (What else is required? Is this about Acquired content also?)
 
+<strike>
 *14.* Consider how the reading system should present selection of content in different categories: Use case Consider options for streamlining communication steps.
 Example: The user subscribes to 2 newspapers and 5 magazines. In addition, the user has 7 book titles. 
 
 The protocol gives means to embed arbitrary meta elements in the content metadata but best practice guidance would support implementation of vendor-independent services and user experience.
 _(Use case?  Is this about presenting content in different bookshelves?)_
+</strike>
 
 *15.* "title" objects are not strictly defined: is it a raw title "bookshelf" or a descriptive title "this bookshelf contains 15 items".
 _(What is being referred to in the spec here? This may simply require an example in the documentation)_
