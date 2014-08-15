@@ -1,0 +1,216 @@
+#summary DODP refresh call 11 August 2014.
+
+= DAISY Online Delivery Protocol (DODP) Refresh call=
+Monday 11 August 2014 11am UTC
+
+Attendees: Dave Gunn (chair/scribe), Mark Klara, Claudio Montalban, Fredrik Schill, Bert Paepen, Geoff Gilmour-Taylor, Rodger Beatty, Dominic Labbé, Takuro Shiroki, Per Sennels, Johan Abbors, Dave Andrews.
+
+Regrets: Jelle Martijn Kok, Hiro Fujimori.
+
+== Actions ==
+*Rolled Action All*: please review the latest Wiki document (https://code.google.com/p/daisy-online-delivery-refresh/wiki/DODPRequirementsAnalysis) to ensure your original requirements have been recorded, and if they are missing please let us know on list or via comments.
+
+*Action Dominic*: provide feedback on areas of documentation which would benefit from clarifications to address differences in service implementations.
+
+*Action All*: be aware we may need to hold a face to face meeting later in the process, this could have budgetary implications you may want to consider now.
+
+
+== Rotating short presentation of learning points from implementing DODP. ==
+Dominic Labbé – Humanware (notes provided)
+
+Humanware has been implementing DOD on its Victor Reader Stratus line of players and is in the process of bringing that support to the Stream. Our objective is to design the user interface to be as transparent as possible as more than 80% of our clientele uses our simpler devices. 
+
+=== Shortcomings ===
+As the objective of this group is to improve the specification, I will focus on opportunities for improvements. On a positive side, we are happy that thousands of users are receiving the books by DOD which is especially useful for short lived information like newspapers.  The issues below are listed without implying that we need to address them all but they were part of the challenges to deliver a standard version that address the needs of multiples servers.
+
+*SOAP*
+
+SOAP is quite complex and the difficulty to maintain generated code outweighs the benefit in this case.  It would have been better to have an API which describes the information to transfer instead of focusing on the method of transfer. We have worked with non-DOD but comparable API and they achieve much of the DOD functionality with much simpler specification.
+
+*Interpretation*
+
+The DOD Spec is vague and server developers interpreted it differently which takes the burden on the player developers to support all special cases. The DOD Spec also does not cover every need so people try to shoehorn their special need into the spec so we have to implement different behaviour for every customer.
+
+The spec is interpreted differently by some servers that, which make it difficult to have a generic DOD service. We need some “configuration” for some servers. 
+
+A document presenting a few use cases and how they should be implemented could be beneficial.
+
+*Streaming*
+
+There are a lot of misconceptions about Streaming, its benefits and the fact that it is a playback side decision/convenience. There is no way a server can enforce the streaming. Our preference goes strongly to download so the user experience is better with the reading not affected by any temporary connection issues. 
+
+*DRM*
+
+Spec does not cover rights protection and defers to PDTB2. Many organizations find PDTB2 too complex and want to keep producing books the way they always have and try to put artificial restrictions on top of the DOD implementation to cover their rights protection needs. For example, the book expiration system defined in the spec is not meant as to be enforced. The spec does not specify the behaviour and suggests using a different system to manage expiration of content. Better to define the exact behaviour of the expiration or remove it completely and defer solely to PDTB2 for expiration. 	
+
+*Business rules*
+
+The state of the transactions is too basic. An Issued book in case of acquisition does not mean much. How long does the content stays in the issued list on the server? What triggers a service to remove an item from the issued list since we do not send a return command? This is, again, too vague and makes it so that the reading system has to be able to manage all possibilities. In theory, the server has the processing power so the management should be server side rather than client side.
+There should be provisions to handle discrepancies between the server and the player. What happens when a player gets reformatted and lost the history of transactions with a server? If a book unknown to a player is marked as issued on the server, what's the proper behaviour? Again servers should be able to track and manage the content sent to clients. It could solve the problems of having multiple clients connected to a single account on the server. 
+
+== Discussion Q&A on presentation ==
+Johan – question about APIs and problems with SOAP?
+
+Dominic – I’ve seen implementations using JSON, and some using very simple calls, custom serialisation rather than full SOAP implementation.
+I don’t think that all SOAP libraries on all platforms are fully compatible, so the SOAP libraries are just not perfect. For example Namespace was a problem in one of our platforms. But we’re stuck with this rather than having a solution which is more platform independent.
+
+Johan – SOAP is also painful when using code generators, the don’t work and you can end up debugging the framework.
+
+Dominic – I think we’ve been going through the same issues. The problem is when you do an update, all the changes made to generated code are lost, and modifying generated code is not as easy as changing human generated code, so not that easy to fix.
+
+Claudio – currently we only have a handful of recommendations to develop documentation on specific features, so it would be great if you could elaborate on the sections which would benefit from expansion. As organisations we only see our implementations, whereas you have a unique view of multiple implementations and can help identify which items need clarification.
+
+Dominic – I’m happy to take this offline and talk to my developers and get back to the group with specific cases. As a general answer I would say topics around content management – some organisations expect when a book is removed from the bookshelf it is removed from the player, others expect it to stay there. There is no bad answer – just different ways to do it. 
+
+*Action Dominic* – provide feedback on areas of documentation which would benefit from clarifications to address differences in service implementations.
+
+Claudio – thanks, there are new features proposed around content management, but they are vague about how the client interact and respond to the server so could be more specific. In terms of DRM and streaming, we have lots of different systems developed, and some have preferences for streaming or download. Currently the protocol cannot enforce Stream or Download, that’s one of the changes we wanted to make. There are a lot of content management issues we need to resolve.
+We for example run a 3G service, so the amount of data transfer is important. We have approximately 250 users in our pilot group, and they have in the last 3 months consumed 20,000 titles in that time. It is impossible for them to have read all of them, so what they have done is consumed a little bit and then decided to discard it – moving on to the next title. On 3G it would have been impossible to download that much data for the user to just discard it, so that’s one of the benefits streaming has for us, but I understand your point that the user experience is better when content is downloaded.
+
+Dominic – I mentioned that downloading is a user preference, but you make a good point of the bandwidth management benefits for streaming. When we talk about DRM I don’t think streaming is a solution for that unless the server can enforce it. Right now a bad player or bad person can modify their system to download streamed content. 
+If we want streaming to be an option, then there needs to be a server specification to force the player to stream, because if not the player could decide to download the content. Right now it is down to email communication of preferences with the services – and that’s not how a specification should work. I should log into a server and it should tell me this book can be downloaded or this book can be streamed, and it should be as clear as that. 
+
+At the moment streaming is just a convenience of the players and that is not answering the need of some of our partners.
+
+Takuro – you mentioned there was required some configurations for servers and it is open to interpretation, is this for the selection download or streaming?
+
+Dominic – in our case at the moment all the implementations we are involved in are download, and the configuration is mainly in terms of cost management, am I allowed to copy or not, should the content remain locked to the player etc.
+
+I think it should be clarified, we should have direct answers in the server saying this book is available to copy Yes/No instead of saying 
+We need a way for an organisation to tell us what can be done with their content, instead of having one organisation using lending mode with custom rules for copying. 
+
+In terms of streaming I agree it is a little bit easier because the books aren’t in the machine. There’s only one copy on the server, so copy management and bookshelf management is much easier in streaming than download. In download when a book has been removed from the bookshelf and there remains a local copy when should we remove the local copy removal is a difficult question, and different services have different answers. It would be much better to have the answer in the server.
+
+Johan – a comment about streaming, it is not a proof to protect your content. If you get access to content via streaming you can save a local copy also.
+
+Dominic – there are lots of misconceptions about streaming and I have lots of people telling me that they feel that streaming is more secure. I have to tell them that with the protocol as it is right now it doesn’t make any difference, any company can make a local copy. Even for an honest company there is nothing stopping them keeping a local copy of streamed content and still being fully compliant.
+
+Dominic – if anyone has any other questions please feel free to contact me offline.
+
+== Items Requiring Clarification ==
+The following have been selected by the Editors as items which remain on the “Requiring Clarification” page (https://code.google.com/p/daisy-online-delivery-refresh/wiki/Items_Requiring_Clarification) and need further information to be resolved into the current update candidate list, removed or for consideration for later updates. 
+
+#4. Multiple clients logged in to the same account can cause problems
+
+Johan – I don’t think this issue requires changes to the protocol, but changes to the documentation. For example should the service allow two clients to be logged on simultaneously? Those kinds of things should be clear in the documentation.
+
+Claudio – we don’t have experience of this, what are the problems this can cause?
+
+Fredrik – we have seen that different clients have different interpretations of newlist and issuedlist it can be a problem with multiple clients logged in to the same account, some material can be missing.
+
+Claudio – agree it appears to be a documentation issue, or require a change of approach, either way it should be on the active list.
+
+Decision: moved to the active list.
+
+
+#14. Consider how the reading system should present selection of content in different categories: Use case Consider options for streamlining communication steps. Example: The user subscribes to 2 newspapers and 5 magazines. In addition, the user has 7 book titles.
+The protocol gives means to embed arbitrary meta elements in the content metadata but best practice guidance would support implementation of vendor-independent services and user experience. (Use case? Is this about presenting content in different bookshelves?)
+
+Johan – I believe this is a duplicate of Requirement 36, supporting categorised content lists.
+
+Mark – I’m not sure what this is, theoretically you can have content lists containing whatever you like, what is the behaviour you’re looking for?
+
+Claudio – there was an issue with the protocol having to call GetContentMeta for potentially hundreds of list items when more information is required. So there was a requirement to make the protocol more streamlined and allow the content lists to come up to the device with more information in one transaction rather than use GetContentMeta for each individual item.
+
+Johan – this could be translated into two requirements that we already address.
+
+Claudio – I think they are covered, unless there is something we have missed.
+
+Johan – I agree, so we are looking to remove this from the list.
+
+Dave – if there are no objections we will remove it.
+
+Decision: item #14 removed.
+
+#17. Please add a message/description-tag to the SOAP responses that can contain free text. (Example? What is the player supposed to do with this free text? Is this about faults too? This should be optional – ability for a player with TTS to read announcement)
+
+#18. The feedback of the standard functions is sometimes too limited. E.g. if an issueContent does not succeed, the feedback will be FALSE, but the reason will be unknown and cannot be communicated to the end user. And in some cases you will need to perform multiple calls to collect all necessary data which is less efficient.
+(Does this exist under the ‘Faults’. Example required within the documentation)
+
+Johan – numbers 17, 18 originated from the same request. 
+There are lots of similar methods in the protocol that return True or False, and several cases where the server currently can return faults with no explanation why. For me this is a drawback of the protocol. I definitely think we should rewrite those methods to address this, so instead of returning False they should return a SOAP fault with the error message inside.
+
+Fredrik – agreed.
+
+Claudio – who requested this?
+
+Johan – it appears to have come from Edmar
+
+Dave – Edmar is not on the call today, but I don’t think he would have a problem with us including his suggestion, only if we were excluding it and it doesn’t sound like that is the case?
+
+Johan – no. So proposal to merge 17 and 18 into a new requirement to be included.
+
+Dave – any objections? (none) Ok.
+
+Decision: merge #17 and #18 into a new requirement item.
+
+#20. GetContentMetadata. Size returned will be the Download size of the content. This may differ from the Streaming size but allows a useful size to be returned without needing to know if the action will be download or Streaming. No API Change required. (What is being asked for here? Is this a recommendation that ‘Size’ refers to complete size of book/item?)
+
+Johan – this clearly should need clarification, but no API changes required, so proposal to include
+
+Mark – from the server side there is currently no way to distinguish between download and streaming anyway, so this would need to be dependent on the requirement that adds the functionality to distinguish between downloading and streaming.
+
+Johan – yes, and since we are now going to address downloading and streaming we should also reflect those changes for the size data element to remove confusion.
+
+Dave – any objections to this being included? (none) Ok.
+
+Decision: #20 to be included as clarification in the documentation.
+
+#22. Problem with multiple namespaces for DODP and Bookmarks (part of SMIL standard). (what?)
+
+Johan – we had some problems ourselves with namespace collisions, I don’t think there is much we can do about it. I don’t suggest that we address this, I just wanted to mention that in future versions we should keep in mind that we don’t use the same name from different namespaces.
+
+Mark – are we talking about using the same prefix for different namespaces?
+
+Johan – I think this is a collision between data types that occurs when using code generators. A collision occurs between names in the Online Protocol and names in the Bookmarks.
+
+Mark – what are the requirements that come from this? Information in a primer to be aware of these issues?
+
+Johan – that would be something we could mention somewhere, or provide a list of know problems that have been solved. From Kolibre we could probably share our solution for this.
+
+Dominic – I know of cases where servers were implementing different solutions to get different namespaces working at the same time in a given software, so I think that is the issue.
+
+Dave – this was raised by Henrik from NOTA who is not on the call today, but it sounds like we are proposing to include this and address it in the documentation?
+
+Johan – yes
+
+Dave – any objections? (none)
+
+Decision: #22 to be included and addressed in documentation.
+
+== Next steps ==
+Dave - We are continuing with updating the wiki, we hope the issue tracker will become live later this week which will allow everyone to comment on specific requirements, clarify the Use Case discuss how we might be able to achieve the requirement. Please visit the Project pages regularly and engage when you can.
+
+Progressing the requirements analysis document:
+https://code.google.com/p/daisy-online-delivery-refresh/wiki/DODPRequirementsAnalysis
+
+Scheduled for the next meeting in Items Requiring Clarification we will be discussing the use of timestamps to synchronise content and bookmarks which are #23, #24, #25. 
+
+https://code.google.com/p/daisy-online-delivery-refresh/wiki/Items_Requiring_Clarification
+
+You might want to familiarise yourself with those items before the meeting next week.
+
+== AOB ==
+Dominic – just a budgetary concern, if we’re thinking about a face to face meeting, which is probably something we should do at some point, we should probably plan ahead to get all of our budgets organised accordingly. Not something we need to address right now, but as some organisations require a little longer to get budgets in place and approved it can take time.
+
+Dave – do we feel that a face to face meeting would be essential to conclude this work?
+
+Dominic – I’m just talking from past experience of all the DAISY specs I’ve been involved in over last 16 years, there is always a point in the last phase when it is useful to meet to quickly address and close issues.
+
+(Agreement from Johan and Fredrik)
+
+Dominic – especially because this call is at different times of day for all of us, early morning / late night, one or two full days at a given location are usually much more productive when we’re all in our waking hours. 
+
+Dave – ok, at this point we’ve identified a meeting as something potentially very useful and for consideration in your budgets. At the moment it is a little too early to schedule anything, so simply advanced notice that a meeting may be necessary.
+
+*Action all* – be aware we may need to hold a face to face meeting later in the process, which will have budgetary implications you may need to consider now.
+
+== Next meeting ==
+Monday 18 August 11am UTC
+
+The presentation slot is open, please contact Dave if you would like to present.
+
+Items Requiring Clarification – will include the use of timestamps and bookmarks (23, 24, 25)
+
+Meeting on 25 August will include a presentation from Johan on DODP use/findings at Kolibre.
+
