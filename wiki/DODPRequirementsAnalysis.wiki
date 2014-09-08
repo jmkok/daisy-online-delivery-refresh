@@ -1,5 +1,10 @@
 #summary Analysis of use cases and requirements for version 2 (aka 1.1)
+----
+*The live version of this document has moved to Github:*
 
+https://github.com/daisy/DAISY-Online-Refresh/wiki/DODPRequirementsAnalysis
+
+----
 <wiki:toc max_depth="2" />
 
 <hr />
