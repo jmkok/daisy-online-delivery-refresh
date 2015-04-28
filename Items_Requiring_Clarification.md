@@ -1,0 +1,144 @@
+# **Items Requiring Clarification** #
+
+## Introduction ##
+
+If you are the author of these suggestions please clarify your requirement so we can either move it to the [Revision 1](https://code.google.com/p/daisy-online-delivery-refresh/source/detail?r=1).1 list or add it to the v2 list.
+
+If no answers are received these will be added to v2 list for future review.
+
+An item which is <strike>striked</strike> has been included in the [Revision 1](https://code.google.com/p/daisy-online-delivery-refresh/source/detail?r=1).1 list.
+
+## **Items that require clarification – Otherwise out of scope for this [revision 1](https://code.google.com/p/daisy-online-delivery-refresh/source/detail?r=1).1 (possibly move to a V2 later)** ##
+
+**1.** No content delivery specification, requires complex external systems and authentication.
+
+**2.** We noticed some struggles to pass information to daisy readers about information which is relevant for TTS, as pronunciation lists and so on.
+
+**3.** But it would be good to have more support for text-to-speech in the protocol.
+
+<strike>
+<b>4.</b> Multiple clients logged in to the same account can cause problems<br>
+</strike>
+
+<strike>
+<b>5.</b> The handling of login and sessions in the current specification is too simple, which makes the protection of resources complicated.<br>
+</strike>
+
+**6.** PDTB2 is (too) hard and not always acceptable - delivery systems should be required to have an acceptable speeds (Unclear what comment about speeds means)
+
+**7.** Delivery systems should be required to enable persistent http(s) connections as some libraries have high delays (what is being asked for – is there handshaking that is occurring we are unaware of?)
+
+<strike>
+<b>8.</b> ‘Zipping Books’:<br>
+<br>
+The number of requests could be kept down by packaging the entire book, or parts of it, in one or multiple ZIP files. This would be especially useful in cases where relatively small amount of text is contained within multiple files.<br>
+<br>
+An example when it could be appropriate to send parts of the DAISY content as a ZIP file is when there is a large DAISY-packaged book with audio, full text and multiple SMIL files.<br>
+<br>
+Here it is less ”protocol chatty”, i.e. a more efficient use of bandwidth, to send the SMIL files in one ZIP file and then get the MP3s one by one, when needed, or, for that matter, according to some intelligent caching schema, anything that allows the reading/listening experience to happen as quickly as possible.<br>
+<br>
+An attendant question is whether it should be possible for the client to choose how the server sends the DAISY content in those cases when both the client and the server support zipped as well as unzipped content.<br>
+<br>
+We propose to add an optional attribute packageURI to each resource in the resources response to getContentResources.<br>
+<br>
+It needs to be investigated if the ZIP format is the most suitable packaging format, considering internationalization issues with filenames in ZIP-files.<br>
+<br>
+It is also interesting to check if the ZIP-format can be used for streaming or only download. <i>(is there a requirement to ZIP books? zipping is not relevant for streamed content)</i>
+</strike>
+
+<strike>
+<b>9.</b> Session handling for permissions - Today, download permissions for resources need to be maintained by hashed links to the resources in question. Some form of session handling could be better in many ways. (requires explanation/clarification.  What is a use case?)<br>
+</strike>
+
+<strike>
+<b>10.</b> getContentResources Recommendation<br>
+<br>
+There is a need for a recommendation to fetch as few XML files as possible before and during a reading session.<br>
+<br>
+The client ought to be ”intelligent”; caching in probable reading order rather than in sequential order, caching and ”prefetch” independent of the viewing mode of the client.<br>
+<br>
+This allows for a much more direct reading/listening experience for the users than if all the material first needs to be fetched, especially in the case of large, full-text books. (is this a player/client function?)<br>
+</strike>
+
+**11.** Only a few simple form and label objects are specified in Dynamic Menus’. Unable to display something as simple as an HTML list.
+
+Dynamic menus are (too slow and complicated), perhaps a standardized method for obtaining a list of custom lists provided by the system?  (Use case/example? This may be something that is service provider specific)
+
+<strike>
+<b>12.</b> You can only return a borrowed library book and not a newspaper issue which is part of a running subscription.<br>
+<br>
+Remove restriction on returnContent that’s only allowed to be called for borrowed content. This method could be used as a general means to remove/un-issue content from a user’s bookshelf. (assume this is asking for it to apply for acquired content as well?<br>
+<br>
+<i>Is this about returning an acquired book to the server (to free up local space), to be able to download again later to continue reading? Do we need a special flag for acquired?)</i>
+</strike>
+
+**13.** It is not exactly clear how the reading system should present the content/structure/menu (just OUT\_OF\_BAND or BROWSE is not enough) (What else is required? Is this about Acquired content also?)
+
+<strike>
+<b>14.</b> Consider how the reading system should present selection of content in different categories: Use case Consider options for streamlining communication steps.<br>
+Example: The user subscribes to 2 newspapers and 5 magazines. In addition, the user has 7 book titles.<br>
+<br>
+The protocol gives means to embed arbitrary meta elements in the content metadata but best practice guidance would support implementation of vendor-independent services and user experience.<br>
+<i>(Use case?  Is this about presenting content in different bookshelves?)</i>
+</strike>
+
+**15.** "title" objects are not strictly defined: is it a raw title "bookshelf" or a descriptive title "this bookshelf contains 15 items".
+_(What is being referred to in the spec here? This may simply require an example in the documentation)_
+
+<strike>
+<b>16.</b> Lack of methods to identify a session end <i>(exists already - logoff)</i>
+Method to push content from the service (complicated – wake device, etc.  (This should be the player telling the server to ‘give me what you have on the users bookshelf…’)<br>
+</strike>
+
+<strike>
+<b>17.</b> Please add a message/description-tag to the SOAP responses that can contain free text. (Example? What is the player supposed to do with this free text? Is this about faults too? This should be optional – ability for a player with TTS to read announcement)<br>
+</strike>
+
+<strike>
+<b>18.</b> The feedback of the standard functions is sometimes too limited. E.g. if an issueContent does not succeed, the feedback will be FALSE, but the reason will be unknown and cannot be communicated to the end user. And in some cases you will need to perform multiple calls to collect all necessary data which is less efficient.<br>
+<br>
+<i>(Does this exist under the ‘Faults’.  Example required within the documentation)</i>
+</strike>
+
+<strike>
+<b>19.</b> Allow server-side sorting by providing an extra parameter to getContentList. The ‘sort’ value could be one of the (required) fields returned from getContentmetadata.<br>
+This guarantees what sorting options are possible on this server.<br>
+<br>
+Sorting-operation could also be enabled by providing this option in the SupportedOptionalOperations of the getServiceAttributes call. (Requires further analysis.<br>
+<br>
+<i>Example/use case? Potential additional load on server side – to get info and sort before providing info back to device.  Perhaps this should be a client side feature once it obtains metadata of the content.  If this is to go ahead, an option is to merge getContentMetadata with getContentList?)</i>
+</strike>
+
+<strike>
+<b>20.</b> GetContentMetadata.  Size returned will be the Download size of the content.<br>
+This may differ from the Streaming size but allows a useful size to be returned without needing to know if the action will be download or Streaming. No API Change required.<br>
+<i>(What is being asked for here? Is this a recommendation that ‘Size’ refers to complete size of book/item?)</i>
+</strike>
+
+**21.** The getContentMetadata has a meta-tag to provide custom/undeclared items to the getContentMetadata. I suggest to add something similar to the getServiceAttributes and setReadingSystemAttributes, so server and reading devices can exchange custom data.
+_(This gets us away from there being a interoperable standard – Risk of a ‘looser’ standard)_
+
+<strike>
+<b>22.</b> Problem with multiple namespaces for DODP and Bookmarks (part of SMIL standard). <i>(what?)</i>
+</strike>
+
+**23.** Other thoughts on bookmarks - Today, fetching regular bookmarks or hilites, one at a time, cannot be done unless the client is already familiar with the individual bookmark/hilite.
+
+This because ”ID” and position are identical. What is needed, then, is some form of position-independent ID. This, however, is not something that we advocate since it would turn DODP into a mess while the usefulness is uncertain in most cases.
+
+For completeness sake, we would like to point out that today’s bookmark handling does not support simultaneous reading with multiple clients; synchronization of lastmark, bookmark and hilite would require some form of version control to make simultaneous reading possible.
+
+One should, however, consider the increase in complexity that is implied by such an extension of usability.  (Just give the bookmark a number for a position independent ID.
+
+Option of a device prompting the user to name a bookmark, but wouldn’t you use ‘hilite’ for this? Complexity for everyone that simply want a ‘mark’ to come back to in the content)Time stamp
+_(This whole section requires further analysis – is it possible to achieve? E.g. device must have the time synced)_
+
+**24.** Add timestamp to a bookmarkSet _(Is this to eliminate conflicts in bookmarks set when offline/online?)_
+
+**25.** Add timestamp to individual bookmarks. That way, when reading on multiple devices online and offline, lastmarks and bookmarks can be synchronised more correctly. _(Example?)_
+
+**26.** Add timestamp information to servers for synchronization of resources (Example why? At best this could be optional – not all devices have synchronised clocks)
+
+---
+
+END

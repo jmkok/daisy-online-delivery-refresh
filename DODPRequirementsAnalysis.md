@@ -1,0 +1,477 @@
+
+---
+
+**The live version of this document has moved to Github:**
+
+https://github.com/daisy/DAISY-Online-Refresh/wiki/DODPRequirementsAnalysis
+
+
+---
+
+
+
+
+
+&lt;hr /&gt;
+
+
+
+# Use Case Actors #
+
+| **Actor** | **Descrition** |
+|:----------|:---------------|
+| Device | A Device that is capable of connecting to and consuming content from an instance of the DAISY Online Delivery Protocol |
+| DAISY Online / Service | A Instance of the DAISY Online Delivery Protocol |
+| User	| The External controller of the Device (normally a Person) |
+| Content | The collection of Media offered by an instance of a DAISY Online Service |
+|Content Item | An individual piece of Content - eg. DAISY Audio book |
+
+# Template #
+
+## Requirement X: Short name or description ##
+
+| **What** | copy-text-here |
+|:---------|:---------------|
+| **Use case** |  |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #X|
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+# User Setup #
+
+## Requirement 1: Setup of user credentials ##
+
+| **What** | Currently there is no method to support the automatic configuration of device user credentials. We require the ability for a device, based on the device unique ID, to obtain the user ID and password |
+|:---------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A device containing a known unique identifier (e.g. serial number) attempts to connect to DAISY Online for the first time and recevies configuration information including user name and password. (In this case the device has been pre configured with the DAISY Online URL) |
+| **Notes** |  |
+| **Source** |  |
+| **Who** |  |
+| **Why** | The service provider has no standard means to implement reading system setup without manual steps. This is a significant factor slowing down delivery and adoption of the online service. Currently the hardware players requires manual configuration by technical staff. <br /> A standard-based, interoperable (manufacturer-independent) way of registering a reading system to a service would eliminate the manual steps. For example: Setting up ID, password, server address via network |
+| **How** |  |
+
+## Requirement 2: Setup of service URLs ##
+
+| **What** | Currently there is no method to support configuring the DAISY Online URL for a device. We require the ability for a unique device ID to be used to return the service URL to the device. |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | User turns on the device for the first time but contains no service URL, the device connects to a "discovery service" which returns the Service URLs that that device is permitted to connect to. |
+| **Notes** |  |
+| **Source** |  |
+| **Who** |  |
+| **Why** | This allows devices to be pre-configured to a general discoery service negating the reqruiement to have devices pre-configured by the vendor to a particular DAISY Online service. |
+| **How** |  |
+
+## Requirement 3: Discovery of nearby services ##
+
+| **What** | Currently there is no method for a device to discover services available to a client in that area. We require the ability to connect to a service that returns valid service URLs for that geographical area and organizational details. |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | User connects to the discovery service and is returned a list of availabe services available for that device based on the devices location. |
+| **Notes** |  |
+| **Source** |  |
+| **Who** |  |
+| **Why** | Simplifies the User's task of locating services that are relevant for them. |
+| **How** |  |
+
+# Content protection / Content management on devices #
+
+## Requirement 4: Start/stop time of a download/stream ##
+
+| **What** | Currently there is no way to determine the start and end time of a download or stream. We require the ability to determine this. |
+|:---------|:---------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | The DAISY Online service recieves a request from the device for a given action type (eg download or stream) It then proceeds to download the indivudual files and finally sends a request to complete or cancel the action. |
+| **Notes** |  |
+| **Source** |  |
+| **Who** |  |
+| **Why** | Start and End times support such functions as Statistics collection, Download / Stream monitoring, Performance / User experience monitoring etc. |
+| **How** |  |
+
+## Requirement 5: Supported resource delivery (download/stream) by service ##
+
+| **What** | Currently there is no way to determine if a DASIY Online service supports Downloading, Streaming or both. We require the ability for a device to determine if a service supports download, streaming or both. |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | Device authenticates and retrieves service attributes and can determine whether the service can support download or streaming. |
+| **Notes** |  |
+| **Source** |  |
+| **Who** |  |
+| **Why** | This can be useful to a device as it can modify / simplify it's user interface based on knowing what operations are supported. |
+| **How** |  |
+
+## Requirement 6: Supported delivery (download/stream) of a content item ##
+
+| **What** | Currently there is no way to determine if an individual content item can be downloaded or streamed. We require the ability for a device to determine if a given content item can be downloaded or streamed. |
+|:---------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | When the device retrieves indivudual content metadata it can determine if an item can be downloaded or streamed. |
+| **Notes** |  |
+| **Source** |  |
+| **Who** |  |
+| **Why** | This allows support for content that may for example, ve suitable for streaming but due to licesnse restictions, cannot be downloaded. |
+| **How** |  |
+
+## Requirement 7: Time framed content delivery ##
+
+| **What** | Currently there is no way to stop the downoading or streaming of content at particular times of the day. We require the ability for a device to determine if a given content item can be downloaded or streamed at the time the request is made. |
+|:---------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | Prior to a download or streaming action begining the device can determine if the action is allowed. |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #23 |
+| **Who** |  |
+| **Why** | This can be used to reduce load on the service to manage Peak times.   For example, you may choose to not allow downloads during peak streaming time to reduce impact of downloads on streaming, reducing resources required to support the DIASY Online service. |
+| **How** |  |
+
+## Requirement 8: Custom error message for denied content access ##
+
+| **What** | We require the ability for a device to receive a custom message from the service when a download or stream action is denied. |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A Device attempts a download or stream action which the server rejects. A custom error message is returned (eg download is not available not, try again at 7pm). |
+| **Notes** | This custom message would not be of use to a device without synthetic voice.   This may mean a generic exception code is also required covering this condition - eg. Download not allowed at this time. |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #23 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 9: Separate resource URLs for downloading and streaming ##
+
+| **What** | Currently when a request for Content is made there is now way of knowing if it is for Streaming or for Download. We require the ability to return different URLs for the acquisition of content files depending on action type (eg download or streaming). |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A device calls GetContentResources unforming the DAISY Online service whether or not it is for Download or Streaming and the correct URLs are returned. |
+| **Notes** | GetContentResources could also return both URL's and leave it up to the Device to choose which is will use based on the type of action. |
+| **Source** |  |
+| **Who** |  |
+| **Why** | It may be useful for the type of resources used to supply files of Download or Streaming to be different.   It also may be useful to st different throttling limits depending on if the content is being streamed or downloaded. |
+| **How** |  |
+
+## Requirement 10: Transfer of downloaded content to external media ##
+
+| **What** | There is currently no way of informing a device to restrict copying content to removable media. We require the ability for the server to inform a device whether a content item that is downloaded can be copied or contained on removable media (eg lock content to a device). |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A device prevents copying a copyright restricted content item to external memory based on an attribute passed by the server. |
+| **Notes** |  |
+| **Source** |  |
+| **Who** |  |
+| **Why** | This would enable a Service to only allow the download of content to devices approved as supporting locking content to non-removable media - This is usful in providing offline access to content while maintaining / supporting content license restrictions. |
+| **How** |  |
+
+## Requirement 11: Restrict user access to expired content (online) ##
+
+| **What** | We require the ability to ensure a user cannot access content that has expired while connected to the Daisy online service. |
+|:---------|:----------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A Device connects to the Service and cannot access an item that has expired. |
+| **Notes** | For online access, this could be achieved by adding a rule to the DODP usage that requires a bookshelf update prior to making a book available. |
+| **Source** |  |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 12: Restrict user access to expired content (offline) ##
+
+| **What** | We require the ability to ensure a user cannot access content that has expired while not connected to the Daisy online service. |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A User accesses their device and cannot access a content item that has expired. |
+| **Notes** | This requires the device to have a trusted time function. In conjunction with the option to only allow downloads to devices that restrct copying to removable storage, this could satisfy the requirement. |
+| **Source** |  |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 13: Identify download/stream requests for content resources ##
+
+| **What** | We require the ability to determine if a device is requesting a download or stream. |
+|:---------|:------------------------------------------------------------------------------------|
+| **Use case** | User requests download of a content item and the server is aware of the action type.  i.e. That it is a Download and not a request to Stream. |
+| **Notes** |  |
+| **Source** |  |
+| **Who** |  |
+| **Why** | This is useful in supporting Service monitoring such as Performance or Load monitoring. |
+| **How** |  |
+
+# Streamlining Communication with the server #
+
+## Requirement 14: Content cover images ##
+
+| **What** | We require the ability to send cover images for a given content item to a device. |
+|:---------|:----------------------------------------------------------------------------------|
+| **Use case** | When a device builds a bookshelf it is able to receive relevant cover images. |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #7 |
+| **Who** |  |
+| **Why** | How should the image be recevied - i.e. A URL? We could add this to GetContentMetadata as a meta element, but we would need to have a standard name so all devices understood how to consume it. Check in DAISY 3 standard to see if they already have an element name for a cover image. |
+| **How** |  |
+
+## Requirement 15: Reduced function call sequence for building a Bookshelf ##
+
+| **What** | We require a reduction in the number of Calls to DAISY Online required to build a Bookshelf. |
+|:---------|:---------------------------------------------------------------------------------------------|
+| **Use case** | A device connects to DAISY Online and is able to build a bookshelf with significantly less calls. |
+| **Notes** | This requires looking at such changes as; Merge GetContentList and GetContentMetadata, Add GetContentList All. This would mean the number of calls made to build a bookshelf would be reduced while the fragement returned would be larger. This method could use a filter to determine which categories of content to supply (i.e. New, Issued, Expired or any combination). |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #8 and #9 |
+| **Who** |  |
+| **Why** | Currently to build a Bookshelf many operations need to be called.   Example, 3 calls to GetContentList and then a call to GetContentMetadata for each item on the bookshelf.   Reducing the number of calls to the Service should improve the performance of building the Bookshelf. |
+| **How** |  |
+
+## Requirement 16: Reduced function call sequence for handshake/session ##
+
+| **What** | We require a reduction in the number of calls to complete a DAISY Online handshake. (Logon, SetReadingSystemAttributes, GetServiceAttributes). |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | Device connects to DAISY Online and issues a logon containing the details of the device (ReadingSystemsAttributes) and is returned the ServiceAttributes. |
+| **Notes** | Merging SetReadingSystem Attrbutes and Logon allows the Service to fail the logon using information supplied in the call to SetReadingSystemAttributes - i.e. device specific information. |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #10 |
+| **Who** |  |
+| **Why** | Currently to logon to the Service, many operations need to be called.   Example, Logon, GetServiceAttributes, SetReadingSystemAttributes. Reducing the number of calls to the Service should improve the performance of building the Bookshelf. |
+| **How** |  |
+
+## Requirement 17: Reduced function call sequence for accessing protected content ##
+
+| **What** | We Require the complexity to secure downloadable resources to be reduced.   i.e Currently authentication is required to be supported by the Content script as it occurs outside of the DO session. |
+|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | Device connects to DAISY Online and obtains resource URL's for a given Content Item.   Device can download content without the need to manage authentication. |
+| **Notes** | 1. Current method - Content script authenticates for each resource call or hashed links are used. <br />2. Bring downloads into DO, therefore negating need for authentication as it is inside the active session. <br />3. Investigate use of Content Delivery Networks and potential to support them. |
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #5 and #9, Comment by MTM / Textalk |
+| **Who** |  |
+| **Why** | This is an attempt to increase performance of content delivery while maintaining secure access to content. |
+| **How** |  |
+
+## Requirement 18: Less computation intensive bookmark syncronisation ##
+
+| **What** | We require the ability to keep bookmarks up to date in a way the is less comms intensive than V1.0 |
+|:---------|:---------------------------------------------------------------------------------------------------|
+| **Use case** | The user logs on to the device and in less comms that is used currently, the current bookmark is returned to enable the device to set the current reading position while other bookmark information is loaded in the background. |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #15 |
+| **Who** |  |
+| **Why** | When bookmarks are used (expecially a lrage number) it is inefficient (affecting performance), to access all Bookmarks in order to find the current reading position. |
+| **How** |  |
+
+## Requirement 19: Zipped downloading of content resources ##
+
+| **What** | We require a reduction in the number of calls needed to obtain the content item media increasing overall efficiency and performance. <br />This would require the ability for a Device to inform the Service on if it supports receving zipped content. |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A device connects to the Service and informs the Service it can handle Zipped content.   When attempting to access content, It receives a reduced number of URL's from which the content can be downloaded. |
+| **Notes** | 11/7/2014 - MTM / Textalk - This could be achieved by zipping the text assets (easy to compress) and supplying the audio assets as individual URL's. <br />Backward compatibility may be supported by making the Zip file an optional attribute. |
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #8, Comment by MTM / Textalk |
+| **Who** |  |
+| **Why** | A single DAISY content item contains many files and this means the Device needs to perform many individual file downloads.   Many of these files are easily compressed (NCC, SMIL etc) and if passed in a single file will reduce the comms overhead in consuming the content item. |
+| **How** |  |
+
+# Best Practice Guide #
+
+## Requirement 20: Best practice for searching via Dynamic Menus ##
+
+| **What** | We require clear guidance on how to use Dynamic menus to support search functions also promoting a standard approach.  This would cover support for subscribable content. |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** |  |
+| **Notes** | Requires Best Practice Guide <br /> 7/2014 - mklarer - We require the ability to support subscribable content <br /> 7/2014 - mlarer - We may require the ability to support large dynamic menus - eg. Paging. |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #11 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 21: Clarification of lastItem in content lists ##
+
+| **What** | We require a Best Practice statement that discusses the use of lastitem parameter in GetContentList, that explains that a Device should carefully manage the page size as some services (especially Search ) can result in thousands of results being returned. |
+|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** |  |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #21 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 22: Clarification of new vs. issued content ##
+
+| **What** | We require a Best Practice statement that discusses the use of New vs Issued Content with a view to promoting the Bookshelf style of implementation. i.e The Bookshelf will always show all content currently available regardless of if it has been downloaded to another device. |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** |  |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #22 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 23: Clarification of new content items ##
+
+| **What** | We require a Best Practice statement that clarifies the definition of terms such as New Content Item.  Eg. Is it a New Item on the Users bookshelf or is it a New item in the Libraries collection. |
+|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** |  |
+| **Notes** | New = UnIssued, meanign it is new to the Users Bookshelf. |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #22 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 24: Best practice for devices how to consume content ##
+
+| **What** | We require a Best Practice statement advising Client Developers on methods of how to best access and consume DAISY content for streaming. |
+|:---------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** |  |
+| **Notes** | ie. The client should access files as they are needed as opposed to access files in sequential order until they have the files they need. |
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #10, Comment by MTM / Textalk |
+| **Who** |  |
+| **Why** | To ensure client devices are developed optimised for streaming. |
+| **How** |  |
+
+## Requirement 25: Clarification for OUT\_OF\_BAND ##
+
+| **What** | We require a Best Practice statement on the meaning of OUT\_OF\_BAND along with more formal / strict guidelines on its implementation to avoid differing interpretations by service providers. |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** |  |
+| **Notes** | This should also cover the situation of when both OUT\_OF\_BAND and BROWSE are specified in ServiceAttributes. |
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) Comment by TakuroS 14/7/2014 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 26: Clarification of returnContent for purchased vs. borrowed content ##
+
+| **What** | We require a Best Practice statement to clarify ReturnContent usage for Purchased Content and for Non Loaned Content - eg. Subscription Issue.   eg. the use of the RequiresReturn attribute and method ReturnContent.   This needs to also clarify how content (Purchasable or Not) can be removed from the Bookshelf but still be available in the future). |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** |  |
+| **Notes** | Why would you ever want to restrict the call to ReturnContent.   Even if it is not loaned content, the server would know this and could simply delete it / remove it from the users bookshelf. We could suport new methods such as GetContentList(archived) and ArchiveContent to allow shifting of content (eg. Purchased content) between a device bookshelf and a master list of available content. |
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) Comment by TakuroS 14/7/2014, [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #12 Comment by Bert.Pae 22/7/2014 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+# New Features and Enhancements #
+
+## Requirement 27: Browse content without authentication ##
+
+| **What** | Currently there is no way to support a guest browse style access.   We require the ability to support guest style access, requiring no username or password to browse content. |
+|:---------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A User connects to the service without supplying valid credentials and is able to search for content but not able to loan/consume etc. |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #16 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 28: Support for content audio samples ##
+
+| **What** | We require the ability to send samples of an Audio content item to a device. |
+|:---------|:-----------------------------------------------------------------------------|
+| **Use case** | A User requests to listen to a sample of an Audio book and is able to stream a relevant section that enables them, for instance, to review the narrator. |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #17 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 29: Support for content synopsis ##
+
+| **What** | We require the ability to send a synopsis for a content item to a device. |
+|:---------|:--------------------------------------------------------------------------|
+| **Use case** | A User requests information for a Content item which includes a book synopsis. |
+| **Notes** | This could be achevied now using the meta element in GetContentMetadata. |
+| **Source** | Claudio |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 30: Support for custom error messages ##
+
+| **What** | We require the ability to send custom error messages. |
+|:---------|:------------------------------------------------------|
+| **Use case** | The user attempts to log on to a device but this fails due to the user being temporarily barred from the service due to not paying the required fee's.   The user receives a custom error message advising why it is not possible including a recommended action. |
+| **Notes** | Can the Fault label be used? Devices without Synthetic voice would not be able to consume this meesage. This may mean it is worthwhile reviewing the more generic exception codes and ensure they cover known scenarios. |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #18 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 31: Support for service outage information ##
+
+| **What** | We require the ability to inform the users of an outage. |
+|:---------|:---------------------------------------------------------|
+| **Use case** | A User attempts to connect to the service while the service is not available due to systems maintenance.   They recevie a message describing the outage including an estimate of when the service is expected to be online. |
+| **Notes** | This could be implenmented in such a way that the message is sent, no new connections are allowed but existing connections are permitted to continue for 20 minutes before they are cut off. <br />Can the Fault label be used? <br />It may also be useful to have a Best practice note on the message a user receives when the device cannot connect to the service. |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #18 |
+| **Who** |  |
+| **Why** | This is required to support general service maintenance improving the overall user experience. |
+| **How** |  |
+
+## Requirement 32: Support for emergency messages ##
+
+| **What** | We require the ability to send emergency messages to users. |
+|:---------|:------------------------------------------------------------|
+| **Use case** | A User listens to an Audio Book and is interrupted with an Emergency message such as a warning the service is about to be taken offline, which is then read to them. |
+| **Notes** | Can the Fault label be used? <br /> It also may be useful to define the preferred polling time for the device to poll for messages from the server. <br /> The exsting priority element could be used to mark an announcement as an Emergency message.   It may be useful to add example fo there use to the Best Practice documentation. |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #18 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 33: Support for Service-level agreement (SLA) ##
+
+| **What** | We require the ability to block access to a users bookshelf instead presenting the Terms Of Service for agreement, and if agreed, allow access to the bookshelf. |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A User (who has not agreed to ToS) logs on to a device and is presented the Terms of Serivce to read and agree to, and once done is able to access their bookshelf. |
+| **Notes** |  |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #19 |
+| **Who** |  |
+| **Why** | This is required as many users of such devices may not have alternate access to the internet to review such Terms of Service. |
+| **How** |  |
+
+## Requirement 34: Move returnBy to contentMetadata ##
+
+| **What** | We require the Return By date to be shifted from GetContentresources to GetContentMetadata as it serves no purpose where it is. |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A device calls GetContentMetadata and recevies the ReturnBy date associated to the given Content Item. |
+| **Notes** | 7/2014 - Takuro - If you move ReturnBy date from GetContentResources to GetContentMetadata, then the NEW content will have a blank ReturnBy date.   When you issue the content (in effect generating a ReturnBy date), you would need to call GetContentMetadata (or GetBokkshelf if it was merged) to get the ReturnBy date.<br />7/2014 - Takuro - The server should guarantee a content Item will be shifted to the Expired Content List if its expired negating the player having to check the ReturnBy. |
+| **Source** | [ProposedDODPChanges](ProposedDODPChanges.md) #20 |
+| **Who** |  |
+| **Why** | The ReturnBy date is relevant to the Content Item and not the individual files that make up the Content Item. <br />It is also reasonable to assume that some devices would like to use the ReturnBy date in the device bookshelf and this means that GetContentResources would need to be called for each item on the Bookshelf to complete building the Bookshelf further decreasing performance. |
+| **How** |  |
+
+## Requirement 35: Support for sorted content lists ##
+
+| **What** | We require the ability to specify the sort order of the content list returned by the service.  Eg. Title, IssuedDate etc. |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A device requests a content list, specifying the sort on IssuedDate Ascending and is returned the ContentList in this order. |
+| **Notes** | To maximise the flexibility of sort options (eg. Sorting on attributes other than title) data not normally supplied by GetContentList would be needed.   This could work well with the merging of Content Metadata into the Content List. |
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #19 Comment by TakuroS |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 36: Support for categorized content lists ##
+
+| **What** | We require the ability to group Content List items into categories.   These categories would consist of data normally supplied as Metadata - eg. Format, Type etc. |
+|:---------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | A device requests a content list which includes the data element the device wishes to categorise on. |
+| **Notes** | To maximise the flexibility of categorisation options data not normally supplied by GetContentList would be needed.   This could work well with the merging of Content Metadata into the Content List.<br />Note that while the Service may supply the data required to do the grouping the actual grouping would be done by the device. |
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) Comment by TakuroS 14/7/2014 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+## Requirement 37: Uninformative repsonses ##
+
+| **What** | We require that protocol operations (logOn, logOff, issueContent, returnContent, markAnnouncementsAsRead) never respond with FALSE, instead respond with a SOAP fault containing the reason. |
+|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Use case** | issueContent operation returns FALSE and the user may never know why the content can't be issued. |
+| **Notes** | Item was accepted as new requirement on the 2014/11/8 telcon |
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #17 and #18 |
+| **Who** |  |
+| **Why** |  |
+| **How** |  |
+
+# Items to address in documentation #
+
+## Multiple clients for one account ##
+
+| **What** | The documentation does not clearly specify how reading systems should behave when two or more devices are used for one account. |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------|
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #17 and #18 |
+
+## Returned size in content metadata ##
+
+| **What** | The documentation does not clearly specify what the size element represents in the returned content metadata. |
+|:---------|:--------------------------------------------------------------------------------------------------------------|
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #20 |
+
+## Conflict in namespaces DODP and Bookmarks ##
+
+| **What** | Generating code from the current WSDL may result in conflict with type names from different namespaces. Include a known issues section in the documentation and provide work arounds for them if possible. |
+|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Source** | [Items\_Requiring\_Clarification](Items_Requiring_Clarification.md) #22 |

@@ -1,0 +1,22 @@
+# **Future Changes to DAISY Online Delivery Protocol v2** #
+
+## Introduction ##
+
+These are changes to the protocol to be incorporated on a future version of the protocol which will involve more significant changes requiring more time and resources.
+
+## **REST related topics** ##
+
+**1.** Some conflicts in WSDL/types, and schemas. REST interface would be much better.
+
+**2.** Use REST binding in addition to SOAP to make messages smaller.
+Assumption: There is a request to implement REST instead of SOAP.  To implement REST would require a re-write of the specification.  It would also require redesign of existing server implementations and support by clients.  This would need to be done in parallel to existing services to ensure continuity and backwards compatibility with existing services.
+
+## **EPUB3 related topics** ##
+
+**3.** Support for EPUB, specifically the ability to stream EPUB.
+
+**4.** Ensure support for foreign language streaming for EPUB3 (EG: Arabic, Japanese).
+
+---
+
+END
